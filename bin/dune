@@ -1,0 +1,3 @@
+(executable
+    (name wisl)
+    (libraries lsp))

@@ -1,0 +1,6 @@
+(include_subdirs unqualified)
+
+(library
+    (name lsp)
+    (libraries yojson ppx_deriving_yojson.runtime uri extlib)
+    (preprocess (pps ppx_deriving_yojson)))

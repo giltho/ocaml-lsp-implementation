@@ -1,0 +1,21 @@
+{
+  "name": "wisl-language-server",
+  "version": "0.1.0",
+  "description": "Test for building ocaml LSP lib, using esy",
+  "license": "MIT",
+  "esy": {
+    "build": "dune build",
+    "release": { "releasedBinaries": [ "wisl" ] }
+  },
+  "dependencies": {
+    "@opam/dune": "*",
+    "@opam/extlib": "1.7.5",
+    "@opam/lambda-term": "*",
+    "@opam/lwt": "4.1.0",
+    "@opam/ppx_deriving_yojson": "3.1",
+    "@opam/uri": "2.0.0",
+    "@opam/yojson": "1.4.1",
+    "ocaml": "~4.6.0"
+  },
+  "devDependencies": { "@opam/merlin": "^3.0.3", "ocaml": "~4.6.0" }
+}
