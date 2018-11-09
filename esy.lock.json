@@ -1,5 +1,5 @@
 {
-  "hash": "9eca0f1912840da26b5b4e79f06393e3",
+  "hash": "9a96c543dd3d868a386fa861e80200ab",
   "root": "root@path:./package.json",
   "node": {
     "root@path:./package.json": {
@@ -11,7 +11,7 @@
         "opam": null
       },
       "dependencies": [
-        "@opam/dune@opam:1.5.0", "@opam/extlib@opam:1.7.5",
+        "@opam/dune@opam:1.5.1", "@opam/extlib@opam:1.7.5",
         "@opam/lambda-term@opam:1.13", "@opam/lwt@opam:4.1.0",
         "@opam/merlin@opam:3.2.2", "@opam/ppx_deriving_yojson@opam:3.1",
         "@opam/uri@opam:2.0.0", "@opam/yojson@opam:1.4.1", "ocaml@4.6.7"
@@ -86,7 +86,7 @@
         }
       },
       "dependencies": [
-        "@esy-ocaml/substs@0.0.1", "@opam/dune@opam:1.5.0",
+        "@esy-ocaml/substs@0.0.1", "@opam/dune@opam:1.5.1",
         "@opam/ppx_sexp_conv@opam:v0.11.2", "@opam/re@opam:1.7.3",
         "@opam/sexplib0@opam:v0.11.0", "@opam/stringext@opam:1.5.0",
         "ocaml@4.6.7"
@@ -415,14 +415,14 @@
         ],
         "files": [
           {
-            "name": "ocaml-stub",
-            "content":
-              "#!/bin/sh\n\nBINDIR=$(dirname \"$(command -v ocamlc)\")\n\"$BINDIR/ocaml\" -I \"$OCAML_TOPLEVEL_PATH\" \"$@\"\n"
-          },
-          {
             "name": "ocamlfind.install",
             "content":
               "bin: [\n  \"src/findlib/ocamlfind\" {\"ocamlfind\"}\n  \"?src/findlib/ocamlfind_opt\" {\"ocamlfind\"}\n  \"?tools/safe_camlp4\"\n]\ntoplevel: [\"src/findlib/topfind\"]\n"
+          },
+          {
+            "name": "ocaml-stub",
+            "content":
+              "#!/bin/sh\n\nBINDIR=$(dirname \"$(command -v ocamlc)\")\n\"$BINDIR/ocaml\" -I \"$OCAML_TOPLEVEL_PATH\" \"$@\"\n"
           },
           {
             "name": "findlib-1.8.0.patch",
@@ -530,7 +530,7 @@
         }
       },
       "dependencies": [
-        "@esy-ocaml/substs@0.0.1", "@opam/dune@opam:1.5.0",
+        "@esy-ocaml/substs@0.0.1", "@opam/dune@opam:1.5.1",
         "@opam/result@opam:1.3", "ocaml@4.6.7"
       ]
     },
@@ -570,7 +570,7 @@
         }
       },
       "dependencies": [
-        "@esy-ocaml/substs@0.0.1", "@opam/dune@opam:1.5.0",
+        "@esy-ocaml/substs@0.0.1", "@opam/dune@opam:1.5.1",
         "@opam/ocamlfind@opam:1.8.0", "@opam/yojson@opam:1.4.1",
         "ocaml@4.6.7"
       ]
@@ -687,7 +687,7 @@
         }
       },
       "dependencies": [
-        "@esy-ocaml/substs@0.0.1", "@opam/dune@opam:1.5.0", "ocaml@4.6.7"
+        "@esy-ocaml/substs@0.0.1", "@opam/dune@opam:1.5.1", "ocaml@4.6.7"
       ]
     },
     "@opam/extlib@opam:1.7.5": {
@@ -732,18 +732,18 @@
         "ocaml@4.6.7"
       ]
     },
-    "@opam/dune@opam:1.5.0": {
+    "@opam/dune@opam:1.5.1": {
       "record": {
         "name": "@opam/dune",
-        "version": "opam:1.5.0",
+        "version": "opam:1.5.1",
         "source":
-          "archive:https://github.com/ocaml/dune/releases/download/1.5.0/dune-1.5.0.tbz#md5:100af30f3c734f066191b8fde28271bc",
+          "archive:https://github.com/ocaml/dune/releases/download/1.5.1/dune-1.5.1.tbz#md5:071ff387b85e08bdfd49dee728dc8358",
         "files": [],
         "opam": {
           "name": "dune",
-          "version": "1.5.0",
+          "version": "1.5.1",
           "opam":
-            "opam-version: \"2.0\"\nname: \"dune\"\nversion: \"1.5.0\"\nsynopsis: \"Fast, portable and opinionated build system\"\ndescription: \"\"\"\ndune is a build system that was designed to simplify the release of\nJane Street packages. It reads metadata from \"dune\" files following a\nvery simple s-expression syntax.\n\ndune is fast, it has very low-overhead and support parallel builds on\nall platforms. It has no system dependencies, all you need to build\ndune and packages using dune is OCaml. You don't need or make or bash\nas long as the packages themselves don't use bash explicitly.\n\ndune supports multi-package development by simply dropping multiple\nrepositories into the same directory.\n\nIt also supports multi-context builds, such as building against\nseveral opam roots/switches simultaneously. This helps maintaining\npackages across several versions of OCaml and gives cross-compilation\nfor free.\"\"\"\nmaintainer: \"opensource@janestreet.com\"\nauthors: \"Jane Street Group, LLC <opensource@janestreet.com>\"\nlicense: \"MIT\"\nhomepage: \"https://github.com/ocaml/dune\"\nbug-reports: \"https://github.com/ocaml/dune/issues\"\ndepends: [\n  \"ocaml\" {>= \"4.02\"}\n]\nconflicts: [\n  \"jbuilder\" {!= \"transition\"}\n]\nbuild: [\n  [\"ocaml\" \"configure.ml\" \"--libdir\" lib] {opam-version < \"2\"}\n  [\"ocaml\" \"bootstrap.ml\"]\n  [\"./boot.exe\" \"--release\" \"--subst\"] {pinned}\n  [\"./boot.exe\" \"--release\" \"-j\" jobs]\n]\ndev-repo: \"git+https://github.com/ocaml/dune.git\"\nurl {\n  src: \"https://github.com/ocaml/dune/releases/download/1.5.0/dune-1.5.0.tbz\"\n  checksum: \"md5=100af30f3c734f066191b8fde28271bc\"\n}",
+            "opam-version: \"2.0\"\nname: \"dune\"\nversion: \"1.5.1\"\nsynopsis: \"Fast, portable and opinionated build system\"\ndescription: \"\"\"\ndune is a build system that was designed to simplify the release of\nJane Street packages. It reads metadata from \"dune\" files following a\nvery simple s-expression syntax.\n\ndune is fast, it has very low-overhead and support parallel builds on\nall platforms. It has no system dependencies, all you need to build\ndune and packages using dune is OCaml. You don't need or make or bash\nas long as the packages themselves don't use bash explicitly.\n\ndune supports multi-package development by simply dropping multiple\nrepositories into the same directory.\n\nIt also supports multi-context builds, such as building against\nseveral opam roots/switches simultaneously. This helps maintaining\npackages across several versions of OCaml and gives cross-compilation\nfor free.\"\"\"\nmaintainer: \"opensource@janestreet.com\"\nauthors: \"Jane Street Group, LLC <opensource@janestreet.com>\"\nlicense: \"MIT\"\nhomepage: \"https://github.com/ocaml/dune\"\nbug-reports: \"https://github.com/ocaml/dune/issues\"\ndepends: [\n  \"ocaml\" {>= \"4.02\"}\n]\nconflicts: [\n  \"jbuilder\" {!= \"transition\"}\n]\nbuild: [\n  [\"ocaml\" \"configure.ml\" \"--libdir\" lib] {opam-version < \"2\"}\n  [\"ocaml\" \"bootstrap.ml\"]\n  [\"./boot.exe\" \"--release\" \"--subst\"] {pinned}\n  [\"./boot.exe\" \"--release\" \"-j\" jobs]\n]\ndev-repo: \"git+https://github.com/ocaml/dune.git\"\nurl {\n  src: \"https://github.com/ocaml/dune/releases/download/1.5.1/dune-1.5.1.tbz\"\n  checksum: \"md5=071ff387b85e08bdfd49dee728dc8358\"\n}",
           "override": {
             "build": [
               [ "ocaml", "bootstrap.ml" ],
