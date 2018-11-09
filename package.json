@@ -25,5 +25,10 @@
     "@opam/merlin": "^3.0.3",
     "ocaml": "~4.6.0",
     "@opam/utop": "2.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
