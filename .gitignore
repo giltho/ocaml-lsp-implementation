@@ -6,4 +6,3 @@ environment
 **/.merlin
 package-lock.json
 package.json
-commitlint.config.js
