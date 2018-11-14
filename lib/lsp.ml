@@ -10,7 +10,6 @@ module type P = sig
 
 end
 
-
 module type S = sig
   val start : unit -> int
 end
@@ -22,7 +21,7 @@ module Make (P : P) : S = struct
   let log_json j = Yojson.Safe.pretty_to_channel P.logc j
 
   let process_input () =
-    let json = Rpc.read_message P.inc log in
+    let json = Rpc.read_message ~log P.inc in
     log_json json;
     `Stop 0
 

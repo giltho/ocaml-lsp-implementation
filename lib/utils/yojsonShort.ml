@@ -7,3 +7,6 @@ let i : int -> json = fun n -> `Int n
 let b : bool -> json = fun tf -> `Bool tf
 let f : float -> json = fun n -> `Float n
 let l : json list -> json = fun jl -> `List jl
+
+
+let parse = Yojson.Safe.from_string
