@@ -4,3 +4,6 @@ node_modules
 *.install
 environment
 **/.merlin
+package-lock.json
+package.json
+commitlint.config.js
