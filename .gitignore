@@ -6,3 +6,4 @@ environment
 **/.merlin
 package-lock.json
 package.json
+**/*.DS_Store
