@@ -2,4 +2,4 @@
 
 
 (** Type defining client capabilities *)
-type t
+type t [@@deriving yojson]

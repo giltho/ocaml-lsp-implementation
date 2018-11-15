@@ -147,7 +147,7 @@ type signatureInformationCapabilities = {
   documentationFormat: (Markup.markupKind list [@default []]);
 }[@@deriving yojson { strict = false }]
 
-let defaultSignatureInformationCapabilities = { documentationFormat: [] }
+let defaultSignatureInformationCapabilities = { documentationFormat = [] }
 
 type signatureHelpCapabilities = {
   dynamicRegistration: (bool [@default false]);
@@ -169,3 +169,5 @@ type t = {
   hover:           (hoverCapabilities [@default defaultHoverCapabilities]);
   signatureHelp:   (signatureHelpCapabilities [@default defaultSignatureHelpCapabilities])
 } [@@deriving yojson { strict = false }]
+
+let default = Result.get (of_yojson (`Assoc []))
