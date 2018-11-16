@@ -1,5 +1,5 @@
 default:
-	dune build bin/wisl.exe --profile=release
+	dune build bin/wisl.exe --profile=release -j 4
 	#we have to do that because ppx_deriving_yojson does weird things..
 
 doc:
