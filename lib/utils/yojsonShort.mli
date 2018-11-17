@@ -11,3 +11,5 @@ val l : json list -> json
 val (%) : json -> string -> json option
 
 val parse : ?buf:Bi_outbuf.t -> ?fname:string -> ?lnum:int -> string -> json
+
+val is_s : json -> bool

@@ -11,7 +11,8 @@ end
 
 module Server : Lsp.S = Lsp.Make(Params)
 
-let main () = 
+let main () =
+  Printf.printf "AAAAAAAAAAAAAAAAADNIENIE?NIE?ID?EIDIEID?EI?DI?";
   let r = Server.start () in
   close_out logc;
   exit r

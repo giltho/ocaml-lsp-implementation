@@ -125,7 +125,7 @@ let defaultCompletionItemKindCapabilities = { valueSet = [] }
 (* completion *)
 type completionCapabilities = {
   dynamicRegistration: (bool [@default false]);
-  completionItem: (completionItemCapabilities [@defaultCompletionItemCapabilities]);
+  completionItem: (completionItemCapabilities [@default defaultCompletionItemCapabilities]);
   completionItemKind: (completionItemKindCapabilitites [@default defaultCompletionItemKindCapabilities]);
   contextSupport: (bool [@default false]);
 }[@@deriving yojson { strict = false }]
