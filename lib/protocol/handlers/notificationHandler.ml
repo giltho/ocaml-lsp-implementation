@@ -10,4 +10,5 @@ let handle =
   | NExit -> Exit.exit ()
   | NInitialized -> ()
   | NDidOpen params -> DidOpenHandler.handle params
+  | NDidClose params -> DidCloseHandler.handle params
   )
