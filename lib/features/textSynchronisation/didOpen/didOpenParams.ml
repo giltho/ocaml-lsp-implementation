@@ -1,3 +1,3 @@
 type t = {
-  textDocument: TextDocumentItem.t;
+  textDocument: TextDocument.Item.t;
 }[@@deriving yojson]

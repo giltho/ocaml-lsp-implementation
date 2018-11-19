@@ -1,4 +1,4 @@
 type t = {
   (** The document that was closed *)
-  textDocument: TextDocumentIdentifier.t;
+  textDocument: TextDocument.Identifier.t;
 }[@@deriving yojson]

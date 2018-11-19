@@ -1,8 +1,8 @@
 open DidOpenParams
-open TextDocumentItem
+open TextDocument.Item
 
 type params = DidOpenParams.t
 
 let handle { textDocument } =
-  TextDocuments.open_item textDocument;
+  TextDocument.Manager.open_item textDocument;
   ()

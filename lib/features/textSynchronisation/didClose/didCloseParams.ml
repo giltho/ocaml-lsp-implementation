@@ -1,3 +1,3 @@
 type t = {
-  textDocument: TextDocumentIdentifier.t;
+  textDocument: TextDocument.Identifier.t;
 }[@@deriving yojson]
