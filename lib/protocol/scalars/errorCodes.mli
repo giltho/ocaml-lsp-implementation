@@ -13,9 +13,5 @@ type t =
   | UnknownErrorCode of string
   | RequestCancelled of string
 
-
-(** Takes an error code and gives it integer value according to the protocol *)
-val to_int : t -> int
-
-(** Gives a standard message for each error code *)
-val to_string : t -> string
+(** Returns the ResponseError associated to the code *)
+val to_yojson : t -> YojsonShort.json

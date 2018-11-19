@@ -1,14 +1,29 @@
-let current_uri = ref Uri.empty
+type t = {
+  rootUri: CUri.t;
+  clientCapabilities: ClientCapabilities.t;
+  trace: Trace.t;
+  parentProcessId: int option;
+}[@@deriving yojson]
 
-let set_current_uri nuri = current_uri := nuri
+(** Initial state *)
+let current = ref {
+  rootUri = Uri.empty;
+  clientCapabilities = ClientCapabilities.default;
+  trace = Trace.TOff;
+  parentProcessId = None;
+}
 
-let get_current_uri () = !current_uri
 
 let is_initialized = ref false
 
-let initialize _process_id uri _capabililities =
-  let () = set_current_uri uri in
+let get () = !current
+
+let set s = current := s
+
+
+let initialize parentProcessId rootUri clientCapabilities trace =
   let () = is_initialized := true in
-  ()
+  set { parentProcessId; clientCapabilities; rootUri; trace; }
+  (* Channels.log (YojsonShort.json_to_string (to_yojson !current)) *)
 
 let initialized () = !is_initialized

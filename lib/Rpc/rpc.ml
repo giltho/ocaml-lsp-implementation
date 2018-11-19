@@ -1,5 +1,7 @@
 open Result
-let read_message ~log input =
+
+let read_yojson () =
+  let input = Channels.get_inc () in
   let clength = input_line input in
   let cl = "Content-Length: " in
   let cll = String.length cl in
@@ -22,3 +24,13 @@ let read_message ~log input =
     in
     json_or_error
   else Error (ErrorCodes.ParseError (Printf.sprintf "Invalid header"))
+
+
+let write_yojson outyj =
+  let content = YojsonShort.json_to_string outyj in
+  let sep = "\r\n\r\n" in
+  let cl = String.length content in
+  let cls = string_of_int cl in
+  let header = Printf.sprintf "Content-Length: %s" cls in
+  let message = header ^ sep ^ content in
+  Channels.out message

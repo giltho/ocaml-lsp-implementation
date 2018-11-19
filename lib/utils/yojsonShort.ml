@@ -21,6 +21,8 @@ let (%) json field =
 
 let parse = Yojson.Safe.from_string
 
+let json_to_string = Yojson.Safe.to_string
+
 let is_s = function
   | `String _ -> true
   | _         -> false

@@ -12,4 +12,6 @@ val (%) : json -> string -> json option
 
 val parse : ?buf:Bi_outbuf.t -> ?fname:string -> ?lnum:int -> string -> json
 
+val json_to_string : ?buf:Bi_outbuf.t -> ?len:int -> ?std:bool -> json -> string
+
 val is_s : json -> bool

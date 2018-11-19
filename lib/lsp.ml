@@ -18,41 +18,30 @@ end
 
 module Make (P : P) : S = struct
 
-  let log s = output_string P.logc s; flush P.logc
+  let log_json j = Channels.log ((Yojson.Safe.pretty_to_string j) ^ "\n")
 
-  let log_json j = log (Yojson.Safe.pretty_to_string j)
-
-  let log_error e = log (ErrorCodes.to_string e)
+  let log_error e = log_json (ErrorCodes.to_yojson e)
 
   let out s = output_string P.outc s; flush P.outc
 
-  let process_input () =
-    let json_or_error = try (Rpc.read_message ~log P.inc)
-      with End_of_file -> Error (ErrorCodes.InternalError "Nothing received... Closing !")
-    in
-    let parsed_content = json_or_error ||> InMessage.of_yojson in
-    (match parsed_content with
-    | Ok im -> log_json (InMessage.to_yojson im)
-    | Error e -> log_error e);
-    `Stop 1
+  let register_actions () = ()
 
   let rec loop () =
-    let a = process_input () in
-    match a with
-    | `Stop c -> c
-    | `Continue -> loop ()
+    let json_or_error = try (Rpc.read_yojson ())
+      with End_of_file -> Error (ErrorCodes.InternalError "Nothing received... Something is wrong!")
+    in
+    let in_message_r = json_or_error ||> Message.of_yojson in
+    (match in_message_r with
+    | Ok im -> log_json (Message.to_yojson im)
+    | Error e -> log_error e);
+    let actions = InMessageHandler.handle in_message_r in
+    let () = Action.execute_all actions in
+    loop ()
 
   let start () =
-    let a = loop () in
-    let exitj = `Assoc [
-      ("jsonrpc", `String "2.0");
-      ("method", `String "exit");
-    ] in
-    let s = Yojson.Safe.pretty_to_string exitj in
-    let s = Printf.sprintf "Content-Length: %d\n\n%s" ((String.length s) + 2) s in
-    log s;
-    out s;
-    a
+    let () = P.( Channels.register ~inc ~outc ~logc ) in
+    let () = register_actions () in
+    loop ()
 
 end
 
