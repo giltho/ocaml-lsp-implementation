@@ -7,3 +7,11 @@ module type ReqHandler_S = sig
 
   val handle : params -> (result_content, error_content) result
 end
+
+module type NotifHandler_S = sig
+
+  type params
+
+  val handle : params -> unit
+  
+end
