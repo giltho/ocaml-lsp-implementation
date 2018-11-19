@@ -8,6 +8,8 @@ type t =
   (** @see <https://microsoft.github.io/language-server-protocol/specification#initialized> *)
   | NDidOpen of DidOpenParams.t
   (** @see  <https://microsoft.github.io/language-server-protocol/specification#textDocument_didOpen> *)
+  | NDidClose of DidCloseParams.t
+  (** @see  <https://microsoft.github.io/language-server-protocol/specification#textDocument_didOpen> *)
 
 
 val to_yojson : t -> YojsonShort.json
