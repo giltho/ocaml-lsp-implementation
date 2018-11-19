@@ -22,18 +22,30 @@ module Make (P : P) : S = struct
 
   let log_error e = log_json (ErrorCodes.to_yojson e)
 
-  let out s = output_string P.outc s; flush P.outc
+  let log_result ?(preok="") serialize res =
+  match res with
+    | Ok im -> Channels.log preok; log_json (serialize im)
+    | Error e -> log_error e
+
+  let error_count = ref 0
+
+  let one_more_error () =
+    error_count := !error_count + 1;
+    if !error_count > 5 then exit 1
+  
 
   let register_actions () = ()
 
   let rec loop () =
     let json_or_error = try (Rpc.read_yojson ())
-      with End_of_file -> Error (ErrorCodes.InternalError "Nothing received... Something is wrong!")
+      with
+        End_of_file ->
+        one_more_error ();
+        Error (ErrorCodes.InternalError "Nothing received... Something is wrong!")
     in
+    log_result ~preok:"Received\n" (fun x -> x) json_or_error;
     let in_message_r = json_or_error ||> Message.of_yojson in
-    (match in_message_r with
-    | Ok im -> log_json (Message.to_yojson im)
-    | Error e -> log_error e);
+    log_result ~preok:"Parsed\n" (Message.to_yojson) in_message_r;
     let actions = InMessageHandler.handle in_message_r in
     let () = Action.execute_all actions in
     loop ()

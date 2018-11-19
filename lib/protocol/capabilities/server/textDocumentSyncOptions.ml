@@ -33,7 +33,7 @@ type t = {
 }[@@deriving yojson]
 
 let implemented = {
-  openClose = false;
+  openClose = true;
   change = TDSKNone;
   willSave = false;
   willSaveWaitUntil = false;

@@ -9,4 +9,5 @@ let handle =
   function
   | NExit -> Exit.exit ()
   | NInitialized -> ()
+  | NDidOpen params -> DidOpenHandler.handle params
   )
