@@ -1,7 +1,7 @@
 open YojsonShort
 
 type success =
-  | SInitialize of InitializeResults.t
+  | SInitialize of Initialize.Results.t
 
 
 type data =
@@ -23,7 +23,7 @@ let to_yojson { resId; resData } =
     ( 
       let result = 
         match succ with
-        | SInitialize ir -> InitializeResults.to_yojson ir
+        | SInitialize ir -> Initialize.Results.to_yojson ir
       in
       o [
         idj;

@@ -1,7 +1,7 @@
 (** Possible methods for requests *)
 type rMethod =
-  (** method 'initialize' that comes with 'InitializeParams' *)
-  | RInitialize of InitializeParams.t
+  (** method 'initialize' that comes with 'Initialize.Params' *)
+  | RInitialize of Initialize.Params.t
 
 (** Representation of a request message *)
 type t = {
