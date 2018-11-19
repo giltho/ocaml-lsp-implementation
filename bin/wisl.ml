@@ -1,4 +1,6 @@
-let logc = open_out "test.log"
+let timeofday = string_of_float (Unix.gettimeofday ())
+
+let logc = open_out ("test-" ^ timeofday ^ ".log")
 
 module Params : Lsp.P = struct
   let language_name = "test"
@@ -12,7 +14,6 @@ end
 module Server : Lsp.S = Lsp.Make(Params)
 
 let main () =
-  Printf.printf "AAAAAAAAAAAAAAAAADNIENIE?NIE?ID?EIDIEID?EI?DI?";
   let r = Server.start () in
   close_out logc;
   exit r
