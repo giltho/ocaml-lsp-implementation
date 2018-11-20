@@ -6,10 +6,12 @@ type t =
   (** @see <https://microsoft.github.io/language-server-protocol/specification#exit> *)
   | NInitialized
   (** @see <https://microsoft.github.io/language-server-protocol/specification#initialized> *)
-  | NDidOpen of DidOpenParams.t
+  | NDidOpen of DidOpen.Params.t
   (** @see  <https://microsoft.github.io/language-server-protocol/specification#textDocument_didOpen> *)
-  | NDidClose of DidCloseParams.t
+  | NDidClose of DidClose.Params.t
   (** @see  <https://microsoft.github.io/language-server-protocol/specification#textDocument_didOpen> *)
+  | NDidChange of DidChange.Params.t
+  (** @see  <https://microsoft.github.io/language-server-protocol/specification#textDocument_didChange> *)
 
 
 val to_yojson : t -> YojsonShort.json

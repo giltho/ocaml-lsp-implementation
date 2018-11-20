@@ -34,7 +34,7 @@ type t = {
 
 let implemented = {
   openClose = true;
-  change = TDSKNone;
+  change = TDSKFull;
   willSave = false;
   willSaveWaitUntil = false;
   save = implementedSaveOptions;

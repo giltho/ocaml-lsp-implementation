@@ -4,8 +4,9 @@ open YojsonShort
 type t =
   | NExit
   | NInitialized 
-  | NDidOpen of DidOpenParams.t
-  | NDidClose of DidCloseParams.t
+  | NDidOpen of DidOpen.Params.t
+  | NDidClose of DidClose.Params.t
+  | NDidChange of DidChange.Params.t
 
 
 
@@ -19,12 +20,16 @@ let to_yojson =
     ])
   | NDidOpen params -> o([
       ("method", s("textDocument/didOpen"));
-      ("params", DidOpenParams.to_yojson params);
+      ("params", DidOpen.Params.to_yojson params);
     ])
   | NDidClose params -> o([
       ("method", s("textDocument/didOpen"));
-      ("params", DidCloseParams.to_yojson params);
+      ("params", DidClose.Params.to_yojson params);
     ])
+  | NDidChange params -> o([
+    ("method", s("textDocument/didChange"));
+    ("params", DidChange.Params.to_yojson params);
+  ])
 
 let (|+>) result f =
   match result with
@@ -39,13 +44,19 @@ let of_yojson json =
     (
       match json % "params" with
       | None -> Error (ErrorCodes.InvalidParams "Cannot invoke textDocument/didOpen without params")
-      | Some params ->  DidOpenParams.of_yojson params |+> (fun x -> Ok (NDidOpen x)) 
+      | Some params ->  DidOpen.Params.of_yojson params |+> (fun x -> Ok (NDidOpen x)) 
     )
   | Some (`String "textDocument/didClose") ->
     (
       match json % "params" with
       | None -> Error (ErrorCodes.InvalidParams "Cannot invoke textDocument/didClose without params")
-      | Some params ->  DidCloseParams.of_yojson params |+> (fun x -> Ok (NDidClose x)) 
+      | Some params ->  DidClose.Params.of_yojson params |+> (fun x -> Ok (NDidClose x)) 
+    )
+  | Some (`String "textDocument/didChange") ->
+    (
+      match json % "params" with
+      | None -> Error (ErrorCodes.InvalidParams "Cannot invoke textDocument/didClose without params")
+      | Some params ->  DidChange.Params.of_yojson params |+> (fun x -> Ok (NDidChange x)) 
     )
   | Some j when (is_s j) -> Error (ErrorCodes.MethodNotFound "Not implemented yet")
   | _ -> Error (ErrorCodes.InvalidRequest "Method is incorrect")

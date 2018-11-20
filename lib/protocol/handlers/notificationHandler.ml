@@ -3,6 +3,7 @@ let handle =
   function
   | NExit -> Exit.exit ()
   | NInitialized -> ()
-  | NDidOpen params -> DidOpenHandler.handle params
-  | NDidClose params -> DidCloseHandler.handle params
+  | NDidOpen params -> DidOpen.Handler.handle params
+  | NDidClose params -> DidClose.Handler.handle params
+  | NDidChange params -> DidChange.Handler.handle params
   )
