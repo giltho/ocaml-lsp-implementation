@@ -1,6 +1,6 @@
 type t =
   (** Exit corresponds to terminating the server, and returning the value r *)
-  | Exit of int
+  | Exit
   (** Respond corresponds to sending the response message given *)
   | Respond of ResponseMessage.t
 

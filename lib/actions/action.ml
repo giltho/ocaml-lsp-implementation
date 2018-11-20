@@ -1,10 +1,10 @@
 type t =
-  | Exit of int
+  | Exit
   | Respond of ResponseMessage.t
 
 let execute action =
   match action with
-  | Exit r -> Exit.exit ()
+  | Exit -> Exit.exit ()
   | Respond rm -> Rpc.write_yojson
     (Message.to_yojson (Message.MResponse rm))
 
