@@ -1,5 +1,7 @@
 open Result
 
+module Actions = Actions
+
 module type P = sig
   (* Parameters about the language *)
   val language_name : string
@@ -10,7 +12,7 @@ module type P = sig
   val outc : out_channel
   val logc : out_channel
 
-  val onDidChangeContent : TextDocument.Item.t -> Actions.t -> unit
+  module Hooks : Hooks.S
 
 end
 
@@ -19,6 +21,9 @@ module type S = sig
 end
 
 module Make (P : P) : S = struct
+
+
+  module InMessageHandler = InMessageHandler.Make (P.Hooks)
 
   let log_json j = Channels.log ((Yojson.Safe.pretty_to_string j) ^ "\n")
 

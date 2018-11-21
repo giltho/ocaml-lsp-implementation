@@ -10,7 +10,10 @@ module Params : Lsp.P = struct
   let outc = stdout
   let logc = logc
 
-  let onDidChangeContent _ _= ()
+  module Hooks = struct
+    let onDidChangeContent _ =
+      Printf.fprintf logc "THIS IS A USER DFEFINED STUFFF HAHAHHAHAHHAHAHA"
+  end
 end
 
 module Server : Lsp.S = Lsp.Make(Params)

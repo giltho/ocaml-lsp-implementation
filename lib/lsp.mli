@@ -4,8 +4,9 @@
 
 (** This module type defines the signature of parameters that should be given to the {!Make}
     functor in order to build a Language Server *)
-module type P = sig
   
+module type P = sig
+
   val language_name : string
   (** The name of the language *)
 
@@ -21,9 +22,8 @@ module type P = sig
   val logc : out_channel
   (** Where the protocol should log *)
 
-  val onDidChangeContent : TextDocument.Item.t -> Actions.t -> unit
-  (** Hook that will be called when a textDocument is modified, that should return a list
-      of actions that will be executed *)
+  module Hooks : Hooks.S
+
 
 end
 
@@ -34,6 +34,11 @@ module type S = sig
       the messages from {!P.inc} *)
   val start : unit -> int
 end
+
+
+module Actions : Actions.S
+(** This module contains actions that can be used in the hooks *)
+
 
 (** This functor builds a Language Server from a parameter module of signature {!P} *)
 module Make (P : P) : S
