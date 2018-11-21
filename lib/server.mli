@@ -41,4 +41,10 @@ module Actions : Actions.S
 
 
 (** This functor builds a Language Server from a parameter module of signature {!P} *)
-module Make (P : P) : S
+module Make (P : P) : sig
+
+  val start : unit -> int
+  (** Executing start will launch the language server. It uses {!Lsp__Rpc.read_message} to read the
+      the messages from {!P.inc} *)
+
+end
