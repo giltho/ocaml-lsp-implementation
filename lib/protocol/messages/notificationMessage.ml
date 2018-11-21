@@ -7,7 +7,7 @@ type t =
   | NDidOpen of DidOpen.Params.t
   | NDidClose of DidClose.Params.t
   | NDidChange of DidChange.Params.t
-
+  | NPublishDiagnostics of PublishDiagnostics.Params.t
 
 
 let to_yojson =
@@ -27,9 +27,13 @@ let to_yojson =
       ("params", DidClose.Params.to_yojson params);
     ])
   | NDidChange params -> o([
-    ("method", s("textDocument/didChange"));
-    ("params", DidChange.Params.to_yojson params);
-  ])
+      ("method", s("textDocument/didChange"));
+      ("params", DidChange.Params.to_yojson params);
+    ])
+  | NPublishDiagnostics params -> o([
+      ("method", s("textDocument/publishDiagnostics"));
+      ("params", PublishDiagnostics.Params.to_yojson params);
+    ])
 
 let (|+>) result f =
   match result with
@@ -57,6 +61,12 @@ let of_yojson json =
       match json % "params" with
       | None -> Error (ErrorCodes.InvalidParams "Cannot invoke textDocument/didClose without params")
       | Some params ->  DidChange.Params.of_yojson params |+> (fun x -> Ok (NDidChange x)) 
+    )
+  | Some (`String "textDocument/publishDiagnostics") ->
+    (
+      match json % "params" with
+      | None -> Error (ErrorCodes.InvalidParams "Cannot invoke textDocument/publishDiagnostics without params")
+      | Some params -> PublishDiagnostics.Params.of_yojson params |+> (fun x -> Ok (NPublishDiagnostics x))
     )
   | Some j when (is_s j) -> Error (ErrorCodes.MethodNotFound "Not implemented yet")
   | _ -> Error (ErrorCodes.InvalidRequest "Method is incorrect")

@@ -10,6 +10,8 @@ module type P = sig
   val outc : out_channel
   val logc : out_channel
 
+  val onDidChangeContent : TextDocument.Item.t -> Actions.t -> unit
+
 end
 
 module type S = sig
@@ -46,8 +48,7 @@ module Make (P : P) : S = struct
     log_result ~preok:"Received\n" (fun x -> x) json_or_error;
     let in_message_r = json_or_error ||> Message.of_yojson in
     log_result ~preok:"Parsed\n" (Message.to_yojson) in_message_r;
-    let actions = InMessageHandler.handle in_message_r in
-    let () = Action.execute_all actions in
+    let () = InMessageHandler.handle in_message_r in
     loop ()
 
   let start () =

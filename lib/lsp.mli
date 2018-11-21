@@ -6,20 +6,24 @@
     functor in order to build a Language Server *)
 module type P = sig
   
-  (** The name of the language *)
   val language_name : string
+  (** The name of the language *)
 
-  (** Id of the language for the protocol *)
   val language_id : string
+  (** Id of the language for the protocol *)
 
-  (** Channel from which the message are comming *)
   val inc : in_channel
+  (** Channel from which the message are comming *)
 
-  (** Where the protocol should answer *)
   val outc : out_channel
+  (** Where the protocol should answer *)
 
-  (** Where the protocol should log *)
   val logc : out_channel
+  (** Where the protocol should log *)
+
+  val onDidChangeContent : TextDocument.Item.t -> Actions.t -> unit
+  (** Hook that will be called when a textDocument is modified, that should return a list
+      of actions that will be executed *)
 
 end
 

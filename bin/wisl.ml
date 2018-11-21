@@ -9,6 +9,8 @@ module Params : Lsp.P = struct
   let inc = stdin
   let outc = stdout
   let logc = logc
+
+  let onDidChangeContent _ _= ()
 end
 
 module Server : Lsp.S = Lsp.Make(Params)

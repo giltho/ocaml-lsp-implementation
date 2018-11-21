@@ -4,11 +4,12 @@ let handle in_message_r =
     Message.(
       match in_message with 
       | MRequest rm -> 
-         let response = RequestHandler.handle rm in
-        [Action.Respond response]
-      | MNotification nm ->
-        let () = NotificationHandler.handle nm in
-        []
-      | _ -> []
+        (* If it is a request, get the response and answer *)
+        let response = RequestHandler.handle rm in
+        Rpc.write_yojson (Message.to_yojson (Message.MResponse response))
+      | MNotification nm -> 
+        (* If it is a notification, simply start the handler *)
+        NotificationHandler.handle nm 
+      | _ -> ()
     )
-  | Error error_code -> []
+  | Error _error_code -> ()
