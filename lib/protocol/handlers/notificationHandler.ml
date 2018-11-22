@@ -6,13 +6,14 @@ module Make (P : sig
   end) = struct
 
   module DidChangeHandler = DidChange.Handler(P)
+  module DidOpenHandler = DidOpen.Handler(P)
 
   let handle =
     NotificationMessage.(
       function
       | NExit -> Exit.exit ()
       | NInitialized -> ()
-      | NDidOpen params -> DidOpen.Handler.handle params
+      | NDidOpen params -> DidOpenHandler.handle params
       | NDidClose params -> DidClose.Handler.handle params
       | NDidChange params -> DidChangeHandler.handle params
       | NPublishDiagnostics _params -> failwith "Client should not publish diagnostics"

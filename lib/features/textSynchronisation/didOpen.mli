@@ -7,5 +7,5 @@ module Params : sig
 
 end
 
-module Handler : Feature.NotifHandler_S
+module Handler (P : Hooks.S) : Feature.NotifHandler_S
   with type params = Params.t

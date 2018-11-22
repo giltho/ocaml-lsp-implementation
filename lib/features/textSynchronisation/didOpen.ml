@@ -7,7 +7,7 @@ module Params = struct
 end
 
 
-module Handler = struct
+module Handler (P : Hooks.S) = struct
 
   open Params
   open TextDocument.Item
@@ -16,6 +16,7 @@ module Handler = struct
 
   let handle { textDocument } =
     TextDocument.Manager.open_item textDocument;
+    P.onDidChangeContent textDocument;
     ()
 
 end
