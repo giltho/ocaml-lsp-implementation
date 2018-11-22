@@ -22,5 +22,5 @@ type t = {
   code: string option;
   source: string;
   message: string;
-  relatedInformation: RelatedInformation.t;
+  relatedInformation: RelatedInformation.t list;
 }[@@deriving yojson]

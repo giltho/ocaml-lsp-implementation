@@ -46,7 +46,7 @@ type t = {
   (**
      	 The diagnostic's message.
      	 *)
-  relatedInformation: RelatedInformation.t;
+  relatedInformation: RelatedInformation.t list;
   (**
      	 An array of related diagnostic information, e.g. when symbol-names within
      	 a scope collide all definitions can be marked via this property.
