@@ -1,7 +1,5 @@
 open Result
 
-module Actions = Actions
-
 module type P = sig
   (* Parameters about the language *)
   val language_name : string

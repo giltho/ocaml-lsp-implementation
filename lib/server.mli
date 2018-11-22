@@ -36,10 +36,6 @@ module type S = sig
 end
 
 
-module Actions : Actions.S
-(** This module contains actions that can be used in the hooks *)
-
-
 (** This functor builds a Language Server from a parameter module of signature {!P} *)
 module Make (P : P) : sig
 
