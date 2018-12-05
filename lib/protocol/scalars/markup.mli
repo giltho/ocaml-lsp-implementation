@@ -7,14 +7,6 @@
  * are reserved for internal usage.
  *)
 
- type markupKind =
-  | Markdown
-  | Plaintext [@@deriving yojson]
+type markupKind = Markdown | Plaintext [@@deriving yojson]
 
-type markupContent = {
-  kind: markupKind;
-  value: string;
-} [@@deriving yojson]
-
-
-
+type markupContent = {kind: markupKind; value: string} [@@deriving yojson]

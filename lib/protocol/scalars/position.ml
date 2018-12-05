@@ -1,4 +1,1 @@
-type t = {
-	line: int;
-	character: int;
-} [@@deriving yojson]
+type t = {line: int; character: int} [@@deriving yojson]

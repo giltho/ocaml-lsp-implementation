@@ -13,5 +13,5 @@ type t =
   | UnknownErrorCode of string
   | RequestCancelled of string
 
-(** Returns the ResponseError associated to the code *)
 val to_yojson : t -> YojsonShort.json
+(** Returns the ResponseError associated to the code *)

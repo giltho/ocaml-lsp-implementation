@@ -27,8 +27,5 @@ let code_and_message =
   | RequestCancelled s -> (-32800, p "RequestCancelled" s)
 
 let to_yojson e =
-  let (code, message) = code_and_message e in
-  o [
-    ("code", i(code));
-    ("message", s(message))
-  ]
+  let code, message = code_and_message e in
+  o [("code", i code); ("message", s message)]

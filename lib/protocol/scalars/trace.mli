@@ -1,5 +1,1 @@
-type t =
-  | TOff
-  | TMessage
-  | TVerbose
-  [@@deriving yojson]
+type t = TOff | TMessage | TVerbose [@@deriving yojson]

@@ -4,4 +4,5 @@
 
 (** This type define textDocumentClientCapabilities *)
 type t [@@deriving yojson]
+
 val default : t

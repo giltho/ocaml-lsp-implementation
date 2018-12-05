@@ -1,22 +1,17 @@
 module Params : sig
-
-  type t = {
-    textDocument: TextDocument.VersionedIdentifier.t;
-    (** The document that did change. The version number points
+  type t =
+    { textDocument: TextDocument.VersionedIdentifier.t
+          (** The document that did change. The version number points
         	      to the version after all provided content changes have
         	      been applied. *)
-    contentChanges: TextDocument.ContentChangeEvent.t list;
-    (** The actual content changes. The content changes describe single state changes
+    ; contentChanges: TextDocument.ContentChangeEvent.t list
+          (** The actual content changes. The content changes describe single state changes
         	      to the document. So if there are two content changes c1 and c2 for a document
         	      in state S then c1 move the document to S' and c2 to S''. *)
-  }[@@deriving yojson]
-
+    }
+  [@@deriving yojson]
 end
 
-
 module Handler (P : sig
-    val onDidChangeContent : TextDocument.Item.t -> unit
-  end) : 
-  Feature.NotifHandler_S
-  with type params = Params.t
-
+  val onDidChangeContent : TextDocument.Item.t -> unit
+end) : Feature.NotifHandler_S with type params = Params.t
