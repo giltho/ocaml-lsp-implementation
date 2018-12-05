@@ -11,11 +11,11 @@ let of_yojson json =
   | Some (`String "2.0") ->
     (match json % "id", json % "method" with
     (* No id, some method, it's a notification*)
-    | None, Some m    -> (NotificationMessage.of_yojson json) ||> (fun r -> Ok (MNotification r))
+    | None, Some _    -> (NotificationMessage.of_yojson json) ||> (fun r -> Ok (MNotification r))
     (* An id and a method, it's a request *)
-    | Some id, Some m -> (RequestMessage.of_yojson json)      ||> (fun r -> Ok (MRequest r))
+    | Some _, Some _ -> (RequestMessage.of_yojson json)      ||> (fun r -> Ok (MRequest r))
     (* No method but an id, it's a response *)
-    | Some id, None   -> (ResponseMessage.of_yojson json)     ||> (fun r -> Ok (MResponse r))
+    | Some _, None   -> (ResponseMessage.of_yojson json)     ||> (fun r -> Ok (MResponse r))
     (* We don't know what it is, that's a mistake *)
     | None, None      -> Error (ErrorCodes.InvalidRequest "Neither id nor method is specified !")
     )

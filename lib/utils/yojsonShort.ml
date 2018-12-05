@@ -12,7 +12,7 @@ let (%) json field =
   let rec find_field l =
     match l with
     | [] -> None
-    | (k, v)::r when field = k -> Some v
+    | (k, v)::_ when field = k -> Some v
     | _::r -> find_field r
   in
   match json with

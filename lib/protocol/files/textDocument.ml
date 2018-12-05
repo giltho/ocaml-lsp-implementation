@@ -42,12 +42,12 @@ module Item = struct
 
   let set_text item text = { item with text }
 
-  let update_text item range rangeLength text = item
+  let update_text item _range _rangeLength _text = item
 
   let perform_change item change =
     let ContentChangeEvent.{ range; rangeLength; text } = change in
     match range, rangeLength with
-    | Some r, Some rl -> update_text item range rangeLength text
+    | Some r, Some rl -> update_text item r rl text
     | _, _ -> set_text item text
 
 end

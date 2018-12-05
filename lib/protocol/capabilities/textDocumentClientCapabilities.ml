@@ -1,7 +1,7 @@
 (* useful for later *)
-type onlyDynamicRegistration = {
+(* type onlyDynamicRegistration = {
   dynamicRegistration: (bool [@default false]); 
-}[@@deriving yojson { strict = false }]
+}[@@deriving yojson { strict = false }] *)
 
 (* Synchronisation *)
 type synchronisationCapabilities = {
@@ -158,9 +158,9 @@ let defaultSignatureHelpCapabilities = Result.get (signatureHelpCapabilities_of_
 
 
 (* references *)
-type referencesCapabilities = onlyDynamicRegistration
+(* type referencesCapabilities = onlyDynamicRegistration
 let referencesCapabilities_of_yojson = onlyDynamicRegistration_of_yojson
-let referencesCapabilities_to_yojson = onlyDynamicRegistration_to_yojson
+let referencesCapabilities_to_yojson = onlyDynamicRegistration_to_yojson *)
 
 (* Actual type *)
 type t = {

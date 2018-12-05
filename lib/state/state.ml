@@ -3,7 +3,7 @@ type t = {
   clientCapabilities: ClientCapabilities.t;
   trace: Trace.t;
   parentProcessId: int option;
-}[@@deriving yojson]
+}(* [@@deriving yojson] *)
 
 (** Initial state *)
 let current = ref {

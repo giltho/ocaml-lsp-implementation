@@ -10,7 +10,6 @@ end
 module Handler (P : Hooks.S) = struct
 
   open Params
-  open TextDocument.Item
 
   type params = Params.t
 

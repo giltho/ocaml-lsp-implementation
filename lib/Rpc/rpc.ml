@@ -1,5 +1,3 @@
-open Result
-
 let read_yojson () =
   let input = Channels.get_inc () in
   let clength = input_line input in
@@ -18,7 +16,7 @@ let read_yojson () =
       try Ok (YojsonShort.parse raw)
       with
       | Failure (message) ->
-        Error (ErrorCodes.ParseError (Printf.sprintf "Cannot parse: %s as json" raw))
+        Error (ErrorCodes.ParseError (Printf.sprintf "Cannot parse: %s as json. Message : %s" raw message))
       | err ->
         Error (ErrorCodes.InternalError (Printf.sprintf "Failure : %s" (Printexc.to_string err)))
     in
