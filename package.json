@@ -1,0 +1,20 @@
+{
+  "name": "lsplib",
+  "version": "0.0.1",
+  "description":
+    "Library to implement Language Server using the Language Server Protocol in OCaml.",
+  "license": "BSD-3-Clause",
+  "esy": { "build": "dune build -p lsplib" },
+  "scripts": {
+    "init": "esy -C cp scripts/commit-msg.sh .git/hooks/commit-msg"
+  },
+  "dependencies": {
+    "@opam/dune": "*",
+    "@opam/extlib": "1.7.6",
+    "@opam/ppx_deriving_yojson": "3.3",
+    "@opam/uri": "2.2.0",
+    "@opam/yojson": "1.5.0",
+    "ocaml": "~4.7.1"
+  },
+  "devDependencies": { "@opam/merlin": "*", "ocaml": "~4.7.1" }
+}

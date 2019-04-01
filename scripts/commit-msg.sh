@@ -13,8 +13,8 @@ COMMITLINT=$(which commitlint)
 if [ "$COMMITLINT" = "" ];
 then
     # Commitlint does not exist :(
-    echo "${RED}err:${NC}  Commitlint is not installed, please install it using"
-    echo "             ${BLUE}npm install -g @commitlint/{cli,config-conventional}${NC}"
+    echo "${RED}err:${NC}  Commitlint is not installed, try : "
+    echo "             ${BLUE}esy install${NC}"
     exit 1
 fi
 

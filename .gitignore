@@ -1,9 +1,9 @@
 _build
+_esy
 doc
 node_modules
 *.install
 environment
 **/.merlin
 package-lock.json
-package.json
 **/*.DS_Store
