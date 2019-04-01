@@ -1,8 +1,8 @@
 (include_subdirs unqualified)
 
 (library
-    (name lsp)
-    (public_name lsp)
+    (name lsplib)
+    (public_name lsplib)
     (synopsis "Library that contains everything needed to build a language server")
     (libraries yojson ppx_deriving_yojson.runtime uri extlib)
     (preprocess (pps ppx_deriving_yojson))
