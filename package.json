@@ -6,7 +6,8 @@
   "license": "BSD-3-Clause",
   "esy": { "build": "dune build -p lsplib" },
   "scripts": {
-    "init": "esy -C cp scripts/commit-msg.sh .git/hooks/commit-msg"
+    "init": "esy -C cp scripts/commit-msg.sh .git/hooks/commit-msg",
+    "build:doc" : "esy -C ./scripts/make-doc.sh"
   },
   "dependencies": {
     "@opam/dune": "*",
