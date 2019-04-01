@@ -1,1 +1,1 @@
-# Generic implementation of the Language Server Protocol in OCaml
+# Librarie to build language server protocols using OCaml
