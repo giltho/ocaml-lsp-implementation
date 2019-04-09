@@ -17,5 +17,10 @@
     "@opam/yojson": "1.5.0",
     "ocaml": "~4.7.1"
   },
-  "devDependencies": { "@opam/merlin": "*", "ocaml": "~4.7.1" }
+  "devDependencies": { 
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@opam/merlin": "*",
+    "ocaml": "~4.7.1"
+  }
 }

@@ -9,7 +9,7 @@ NC='\033[0m'
 echo "${BLUE}info:${NC} Executing commit-msg hook to check your commit message"
 
 # Does commitlint exist ?
-COMMITLINT=$(which commitlint)
+COMMITLINT=$(esy which commitlint)
 if [ "$COMMITLINT" = "" ];
 then
     # Commitlint does not exist :(
@@ -19,7 +19,7 @@ then
 fi
 
 # Commitlint is installed
-cat $1 | commitlint
+cat $1 | esy commitlint
 if [ $? == 1 ]; then
     # Commitlint returned 1, scream.
     echo "\n\n${RED}err:${NC}  Please correct your commit message !"
