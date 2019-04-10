@@ -12,6 +12,7 @@
   "dependencies": {
     "@opam/dune": "*",
     "@opam/extlib": "1.7.6",
+    "@opam/ocamlformat": "0.9",
     "@opam/ppx_deriving_yojson": "3.3",
     "@opam/uri": "2.2.0",
     "@opam/yojson": "1.5.0",
