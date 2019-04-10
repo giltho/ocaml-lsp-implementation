@@ -1,4 +1,4 @@
-type t = {resolveProvider: bool; triggerCharacters: string list}
+type t = { resolveProvider : bool; triggerCharacters : string list }
 [@@deriving yojson]
 
-let implemented = {resolveProvider= false; triggerCharacters= []}
+let implemented = { resolveProvider = false; triggerCharacters = [] }

@@ -1,5 +1,5 @@
 module Params = struct
-  type t = {textDocument: TextDocument.Identifier.t} [@@deriving yojson]
+  type t = { textDocument : TextDocument.Identifier.t } [@@deriving yojson]
 end
 
 module Handler = struct
@@ -7,7 +7,7 @@ module Handler = struct
 
   type params = Params.t
 
-  let handle {textDocument} =
-    TextDocument.Manager.close_id textDocument ;
+  let handle { textDocument } =
+    TextDocument.Manager.close_id textDocument;
     ()
 end

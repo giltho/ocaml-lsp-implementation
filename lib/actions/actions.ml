@@ -3,7 +3,7 @@ module type S = sig
 end
 
 let diagnose uri diagnostics =
-  let params = PublishDiagnostics.Params.{uri; diagnostics} in
+  let params = PublishDiagnostics.Params.{ uri; diagnostics } in
   let message =
     Message.MNotification (NotificationMessage.NPublishDiagnostics params)
   in

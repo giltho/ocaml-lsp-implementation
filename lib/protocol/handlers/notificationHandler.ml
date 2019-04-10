@@ -8,16 +8,11 @@ struct
   let handle =
     NotificationMessage.(
       function
-      | NExit ->
-          Exit.exit ()
-      | NInitialized ->
-          ()
-      | NDidOpen params ->
-          DidOpenHandler.handle params
-      | NDidClose params ->
-          DidClose.Handler.handle params
-      | NDidChange params ->
-          DidChangeHandler.handle params
+      | NExit -> Exit.exit ()
+      | NInitialized -> ()
+      | NDidOpen params -> DidOpenHandler.handle params
+      | NDidClose params -> DidClose.Handler.handle params
+      | NDidChange params -> DidChangeHandler.handle params
       | NPublishDiagnostics _params ->
           failwith "Client should not publish diagnostics")
 end

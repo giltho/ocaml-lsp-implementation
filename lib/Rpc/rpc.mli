@@ -4,4 +4,4 @@ val read_yojson : unit -> YojsonShort.json Result.t
 (** Reads a message and gives a yojson *)
 
 val write_yojson : YojsonShort.json -> unit
-(**  Sens a yojson to the client *)
+(** Sens a yojson to the client *)

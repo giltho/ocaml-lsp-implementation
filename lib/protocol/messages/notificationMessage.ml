@@ -10,40 +10,38 @@ type t =
   | NPublishDiagnostics of PublishDiagnostics.Params.t
 
 let to_yojson = function
-  | NExit ->
-      o [("method", s "exit")]
-  | NInitialized ->
-      o [("method", s "initialized")]
+  | NExit -> o [ ("method", s "exit") ]
+  | NInitialized -> o [ ("method", s "initialized") ]
   | NDidOpen params ->
       o
-        [ ("method", s "textDocument/didOpen")
-        ; ("params", DidOpen.Params.to_yojson params) ]
+        [ ("method", s "textDocument/didOpen");
+          ("params", DidOpen.Params.to_yojson params)
+        ]
   | NDidClose params ->
       o
-        [ ("method", s "textDocument/didOpen")
-        ; ("params", DidClose.Params.to_yojson params) ]
+        [ ("method", s "textDocument/didOpen");
+          ("params", DidClose.Params.to_yojson params)
+        ]
   | NDidChange params ->
       o
-        [ ("method", s "textDocument/didChange")
-        ; ("params", DidChange.Params.to_yojson params) ]
+        [ ("method", s "textDocument/didChange");
+          ("params", DidChange.Params.to_yojson params)
+        ]
   | NPublishDiagnostics params ->
       o
-        [ ("method", s "textDocument/publishDiagnostics")
-        ; ("params", PublishDiagnostics.Params.to_yojson params) ]
+        [ ("method", s "textDocument/publishDiagnostics");
+          ("params", PublishDiagnostics.Params.to_yojson params)
+        ]
 
 let ( |+> ) result f =
   match result with
-  | Ok x ->
-      f x
-  | Error s ->
-      Error (ErrorCodes.InvalidParams s)
+  | Ok x -> f x
+  | Error s -> Error (ErrorCodes.InvalidParams s)
 
 let of_yojson json =
   match json % "method" with
-  | Some (`String "initialized") ->
-      Ok NInitialized
-  | Some (`String "exit") ->
-      Ok NExit
+  | Some (`String "initialized") -> Ok NInitialized
+  | Some (`String "exit") -> Ok NExit
   | Some (`String "textDocument/didOpen") -> (
     match json % "params" with
     | None ->
@@ -75,9 +73,8 @@ let of_yojson json =
           (ErrorCodes.InvalidParams
              "Cannot invoke textDocument/publishDiagnostics without params")
     | Some params ->
-        PublishDiagnostics.Params.of_yojson params
-        |+> fun x -> Ok (NPublishDiagnostics x) )
+        PublishDiagnostics.Params.of_yojson params |+> fun x ->
+        Ok (NPublishDiagnostics x) )
   | Some j when is_s j ->
       Error (ErrorCodes.MethodNotFound "Not implemented yet")
-  | _ ->
-      Error (ErrorCodes.InvalidRequest "Method is incorrect")
+  | _ -> Error (ErrorCodes.InvalidRequest "Method is incorrect")

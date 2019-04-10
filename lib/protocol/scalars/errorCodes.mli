@@ -1,5 +1,5 @@
-(**  This module handles error code that exist in JSON RPC or that are specific to
-     the Language Server Protocol *)
+(** This module handles error code that exist in JSON RPC or that are specific
+    to the Language Server Protocol *)
 
 type t =
   | ParseError of string

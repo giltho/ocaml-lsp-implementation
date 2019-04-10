@@ -13,8 +13,6 @@ module Make (P : Hooks.S) = struct
           | MNotification nm ->
               (* If it is a notification, simply start the handler *)
               NotificationHandler.handle nm
-          | _ ->
-              ()) )
-    | Error _error_code ->
-        ()
+          | _ -> ()) )
+    | Error _error_code -> ()
 end

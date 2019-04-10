@@ -17,22 +17,24 @@ module Params : Lsp.Server.P = struct
 
   module Hooks = struct
     let onDidChangeContent textDoc =
-      let Lsp.TextDocument.{uri; _} = textDoc in
+      let Lsp.TextDocument.{ uri; _ } = textDoc in
       let range =
         Range.
-          { rstart= Position.{line= 0; character= 0}
-          ; rend= Position.{line= 0; character= 3} }
+          { rstart = Position.{ line = 0; character = 0 };
+            rend = Position.{ line = 0; character = 3 }
+          }
       in
       let diag =
         Lsp.Diagnostic.
-          { range
-          ; severity= Some Lsp.Diagnostic.Severity.SevError
-          ; message= "AAAAAAAAAA"
-          ; code= None
-          ; source= "wisl"
-          ; relatedInformation= [] }
+          { range;
+            severity = Some Lsp.Diagnostic.Severity.SevError;
+            message = "AAAAAAAAAA";
+            code = None;
+            source = "wisl";
+            relatedInformation = []
+          }
       in
-      Lsp.Actions.diagnose uri [diag]
+      Lsp.Actions.diagnose uri [ diag ]
   end
 end
 
@@ -40,6 +42,7 @@ module Server = Lsp.Server.Make (Params)
 
 let main () =
   let r = Server.start () in
-  close_out logc ; exit r
+  close_out logc;
+  exit r
 
 let () = main ()

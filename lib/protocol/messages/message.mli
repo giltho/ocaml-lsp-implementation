@@ -1,7 +1,7 @@
 (** This module describes received messages and how to parse them *)
 
-(** Type of received messages, it can be either a request, a notification or a response to
-    a prevously sent request *)
+(** Type of received messages, it can be either a request, a notification or a
+    response to a prevously sent request *)
 type t =
   | MRequest of RequestMessage.t
   | MNotification of NotificationMessage.t
