@@ -32,7 +32,8 @@ module Make (P : P) : S = struct
     | Ok im ->
         Channels.log preok ;
         log_json (serialize im)
-    | Error e -> log_error e
+    | Error e ->
+        log_error e
 
   let error_count = ref 0
 
@@ -44,7 +45,8 @@ module Make (P : P) : S = struct
 
   let rec loop () =
     let json_or_error =
-      try Rpc.read_yojson () with End_of_file ->
+      try Rpc.read_yojson ()
+      with End_of_file ->
         one_more_error () ;
         Error
           (ErrorCodes.InternalError "Nothing received... Something is wrong!")

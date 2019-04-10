@@ -21,7 +21,7 @@ module Handler = struct
 
   type error_content = ErrorCodes.t * error_data
 
-  let handle Params.({processId; rootUri; capabilities; trace}) =
+  let handle Params.{processId; rootUri; capabilities; trace} =
     if not (State.initialized ()) then
       let () = State.initialize processId rootUri capabilities trace in
       Ok Results.{capabilities= ServerCapabilities.implemented}

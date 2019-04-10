@@ -7,7 +7,8 @@ type data = ResSuccess of success | ResError of ErrorCodes.t
 type t = {resId: json; resData: data}
 
 let of_yojson = function
-  | _ -> Error (ErrorCodes.MethodNotFound "Not implemented yet")
+  | _ ->
+      Error (ErrorCodes.MethodNotFound "Not implemented yet")
 
 let to_yojson {resId; resData} =
   let idj = ("id", resId) in

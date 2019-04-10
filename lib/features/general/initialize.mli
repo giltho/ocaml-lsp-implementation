@@ -14,8 +14,7 @@ module Params : sig
         	   `rootUri` wins. *)
     ; capabilities: (ClientCapabilities.t[@default ClientCapabilities.default])
           (** The capabilities provided by the client (editor or tool) *)
-    ; trace: Trace.t
-           [@default Trace.TOff]
+    ; trace: Trace.t [@default Trace.TOff]
           (** The initial trace setting. If omitted trace is disabled ('off'). *)
     }
   [@@deriving yojson {strict= false}]

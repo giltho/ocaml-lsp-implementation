@@ -10,8 +10,10 @@ type t =
   | NPublishDiagnostics of PublishDiagnostics.Params.t
 
 let to_yojson = function
-  | NExit -> o [("method", s "exit")]
-  | NInitialized -> o [("method", s "initialized")]
+  | NExit ->
+      o [("method", s "exit")]
+  | NInitialized ->
+      o [("method", s "initialized")]
   | NDidOpen params ->
       o
         [ ("method", s "textDocument/didOpen")
@@ -31,13 +33,17 @@ let to_yojson = function
 
 let ( |+> ) result f =
   match result with
-  | Ok x -> f x
-  | Error s -> Error (ErrorCodes.InvalidParams s)
+  | Ok x ->
+      f x
+  | Error s ->
+      Error (ErrorCodes.InvalidParams s)
 
 let of_yojson json =
   match json % "method" with
-  | Some (`String "initialized") -> Ok NInitialized
-  | Some (`String "exit") -> Ok NExit
+  | Some (`String "initialized") ->
+      Ok NInitialized
+  | Some (`String "exit") ->
+      Ok NExit
   | Some (`String "textDocument/didOpen") -> (
     match json % "params" with
     | None ->
@@ -73,4 +79,5 @@ let of_yojson json =
         |+> fun x -> Ok (NPublishDiagnostics x) )
   | Some j when is_s j ->
       Error (ErrorCodes.MethodNotFound "Not implemented yet")
-  | _ -> Error (ErrorCodes.InvalidRequest "Method is incorrect")
+  | _ ->
+      Error (ErrorCodes.InvalidRequest "Method is incorrect")

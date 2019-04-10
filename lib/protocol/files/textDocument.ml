@@ -27,10 +27,12 @@ module Item = struct
   let update_text item _range _rangeLength _text = item
 
   let perform_change item change =
-    let ContentChangeEvent.({range; rangeLength; text}) = change in
+    let ContentChangeEvent.{range; rangeLength; text} = change in
     match (range, rangeLength) with
-    | Some r, Some rl -> update_text item r rl text
-    | _, _ -> set_text item text
+    | Some r, Some rl ->
+        update_text item r rl text
+    | _, _ ->
+        set_text item text
 end
 
 module Manager = struct
@@ -51,12 +53,13 @@ module Manager = struct
   let close_id tid = close tid.Identifier.uri
 
   let perform_changes vid changes =
-    let VersionedIdentifier.({uri; version}) = vid in
+    let VersionedIdentifier.{uri; version} = vid in
     match find_opt_uri uri with
     | Some doc ->
         let modified = List.fold_left Item.perform_change doc changes in
         let updated = Item.set_version modified version in
         let () = Hashtbl.replace current uri updated in
         Some updated
-    | None -> None
+    | None ->
+        None
 end

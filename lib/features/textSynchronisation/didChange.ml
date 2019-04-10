@@ -25,7 +25,8 @@ struct
             ( "\nThe following document was updated :\n"
             ^ YojsonShort.json_to_string (TextDocument.Item.to_yojson docp)
             ^ "\n" )
-      | None -> Channels.log "\nTried to update a file that was not opened\n"
+      | None ->
+          Channels.log "\nTried to update a file that was not opened\n"
     in
     ()
 end

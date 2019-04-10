@@ -17,7 +17,7 @@ module Params : Lsp.Server.P = struct
 
   module Hooks = struct
     let onDidChangeContent textDoc =
-      let Lsp.TextDocument.({uri; _}) = textDoc in
+      let Lsp.TextDocument.{uri; _} = textDoc in
       let range =
         Range.
           { rstart= Position.{line= 0; character= 0}

@@ -29,11 +29,16 @@ let of_yojson json =
 let to_yojson message =
   let without_jsonrpc =
     match message with
-    | MRequest rm -> RequestMessage.to_yojson rm
-    | MNotification nm -> NotificationMessage.to_yojson nm
-    | MResponse rm -> ResponseMessage.to_yojson rm
+    | MRequest rm ->
+        RequestMessage.to_yojson rm
+    | MNotification nm ->
+        NotificationMessage.to_yojson nm
+    | MResponse rm ->
+        ResponseMessage.to_yojson rm
   in
   let jsonrpc = ("jsonrpc", s "2.0") in
   match without_jsonrpc with
-  | `Assoc l -> `Assoc (jsonrpc :: l)
-  | _ -> failwith "A message cannot be something other than an object !!!"
+  | `Assoc l ->
+      `Assoc (jsonrpc :: l)
+  | _ ->
+      failwith "A message cannot be something other than an object !!!"

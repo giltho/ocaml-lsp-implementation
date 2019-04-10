@@ -15,16 +15,26 @@ type t =
 let code_and_message =
   let p = Printf.sprintf "%s: %s" in
   function
-  | ParseError s -> (-32700, p "ParseError" s)
-  | InvalidRequest s -> (-32600, p "InvalidRequest" s)
-  | MethodNotFound s -> (-32601, p "MethodNotFound" s)
-  | InvalidParams s -> (-32602, p "InvalidParams" s)
-  | InternalError s -> (-32603, p "InternalError" s)
-  | ServerErrorStart s -> (-32099, p "ServerErrorStart" s)
-  | ServerErrorEnd s -> (-32000, p "ServerErrorEnd" s)
-  | ServerNotInitialized s -> (-32002, p "ServerNotInitialized" s)
-  | UnknownErrorCode s -> (-32001, p "UnknownErrorCode" s)
-  | RequestCancelled s -> (-32800, p "RequestCancelled" s)
+  | ParseError s ->
+      (-32700, p "ParseError" s)
+  | InvalidRequest s ->
+      (-32600, p "InvalidRequest" s)
+  | MethodNotFound s ->
+      (-32601, p "MethodNotFound" s)
+  | InvalidParams s ->
+      (-32602, p "InvalidParams" s)
+  | InternalError s ->
+      (-32603, p "InternalError" s)
+  | ServerErrorStart s ->
+      (-32099, p "ServerErrorStart" s)
+  | ServerErrorEnd s ->
+      (-32000, p "ServerErrorEnd" s)
+  | ServerNotInitialized s ->
+      (-32002, p "ServerNotInitialized" s)
+  | UnknownErrorCode s ->
+      (-32001, p "UnknownErrorCode" s)
+  | RequestCancelled s ->
+      (-32800, p "RequestCancelled" s)
 
 let to_yojson e =
   let code, message = code_and_message e in

@@ -5,8 +5,10 @@ type rMethod = RInitialize of Initialize.Params.t
 (** This is used to propagate invalid params from yojson parsing *)
 let ( |+> ) result f =
   match result with
-  | Ok x -> f x
-  | Error s -> Error (ErrorCodes.InvalidParams s)
+  | Ok x ->
+      f x
+  | Error s ->
+      Error (ErrorCodes.InvalidParams s)
 
 type t = {rId: YojsonShort.json; rMethod: rMethod}
 
@@ -26,12 +28,14 @@ let of_yojson json =
                "Cannot invoke initialize without parameters") )
   | Some j when is_s j ->
       Error (ErrorCodes.MethodNotFound "Not implemented yet")
-  | _ -> Error (ErrorCodes.InvalidRequest "Method is incorrect")
+  | _ ->
+      Error (ErrorCodes.InvalidRequest "Method is incorrect")
 
 let to_yojson {rId; rMethod} =
-  match rMethod with (* method 'initialize' *)
-               | RInitialize p ->
-    `Assoc
-      [ ("id", rId)
-      ; ("method", `String "initialize")
-      ; ("params", Initialize.Params.to_yojson p) ]
+  match rMethod with
+  (* method 'initialize' *)
+  | RInitialize p ->
+      `Assoc
+        [ ("id", rId)
+        ; ("method", `String "initialize")
+        ; ("params", Initialize.Params.to_yojson p) ]
