@@ -1,0 +1,7 @@
+(include_subdirs unqualified)
+
+(library
+ (name protocol)
+ (public_name lsplib.protocol)
+ (libraries uri utils)
+ (flags -open Utils))

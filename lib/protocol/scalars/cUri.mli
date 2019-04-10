@@ -1,5 +1,5 @@
 type t = Uri.t
 
-val of_yojson : YojsonShort.json -> (t, string) result
+val of_yojson : Json.t -> (t, string) result
 
-val to_yojson : t -> YojsonShort.json
+val to_yojson : t -> Json.t

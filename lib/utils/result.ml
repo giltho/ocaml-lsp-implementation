@@ -1,4 +1,4 @@
-type 'a t = ('a, ErrorCodes.t) Pervasives.result
+type ('a,'b) t = ('a, 'a) result
 
 let get res = match res with Ok a -> a | Error b -> failwith b
 

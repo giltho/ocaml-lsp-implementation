@@ -10,15 +10,15 @@ type t =
       (** @see
           <https://microsoft.github.io/language-server-protocol/specification#initialized>
            *)
-  | NDidOpen of DidOpen.Params.t
+  | NDidOpen of DidOpenTextDocumentParams.t
       (** @see
           <https://microsoft.github.io/language-server-protocol/specification#textDocument_didOpen>
            *)
-  | NDidClose of DidClose.Params.t
+  | NDidClose of DidCloseTextDocumentParams.t
       (** @see
           <https://microsoft.github.io/language-server-protocol/specification#textDocument_didOpen>
            *)
-  | NDidChange of DidChange.Params.t
+  | NDidChange of DidChangeTextDocumentParams.t
       (** @see
           <https://microsoft.github.io/language-server-protocol/specification#textDocument_didChange>
            *)

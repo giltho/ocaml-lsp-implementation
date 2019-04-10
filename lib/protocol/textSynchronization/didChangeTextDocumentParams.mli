@@ -1,5 +1,4 @@
-module Params : sig
-  type t = {
+type t = {
     textDocument : TextDocument.VersionedIdentifier.t;
         (** The document that did change. The version number points to the
             version after all provided content changes have been applied. *)
@@ -9,9 +8,4 @@ module Params : sig
             c1 and c2 for a document in state S then c1 move the document to S'
             and c2 to S''. *)
   }
-  [@@deriving yojson]
-end
-
-module Handler (P : sig
-  val onDidChangeContent : TextDocument.Item.t -> unit
-end) : Feature.NotifHandler_S with type params = Params.t
+[@@deriving yojson]

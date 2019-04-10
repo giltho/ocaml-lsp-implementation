@@ -13,5 +13,5 @@ type t =
   | UnknownErrorCode of string
   | RequestCancelled of string
 
-val to_yojson : t -> YojsonShort.json
+val to_yojson : t -> Json.t
 (** Returns the ResponseError associated to the code *)

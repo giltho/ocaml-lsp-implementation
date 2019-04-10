@@ -4,10 +4,10 @@
   "description":
     "Library to implement Language Server using the Language Server Protocol in OCaml.",
   "license": "BSD-3-Clause",
-  "esy": { "build": "dune build -p lsplib" },
+  "esy": { "build": "dune build -p lsplib", "buildsInSource": "_build" },
   "scripts": {
     "init": "esy -C sh scripts/init.sh",
-    "build:doc": "esy -C ./scripts/make-doc.sh"
+    "build:doc": "esy -C sh scripts/make-doc.sh"
   },
   "dependencies": {
     "@opam/dune": "^1.9",
