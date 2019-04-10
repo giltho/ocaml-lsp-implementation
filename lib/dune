@@ -4,5 +4,5 @@
     (name lsplib)
     (public_name lsplib)
     (synopsis "Library that contains everything needed to build a language server")
-    (libraries yojson ppx_deriving_yojson.runtime uri extlib)
+    (libraries yojson ppx_deriving_yojson.runtime uri)
     (preprocess (pps ppx_deriving_yojson)))

@@ -1,5 +1,5 @@
 {
-  "checksum": "87c6baa4de67da589f4719924a1d273f",
+  "checksum": "ddc46c399262e21aee533ce1d81acaff",
   "root": "lsplib@link-dev:./package.json",
   "node": {
     "yargs-parser@10.1.0@d41d8cd9": {
@@ -896,11 +896,11 @@
         "ocaml@4.7.1004@d41d8cd9", "@opam/yojson@opam:1.5.0@890db858",
         "@opam/uri@opam:2.2.0@dfca6d0f",
         "@opam/ppx_deriving_yojson@opam:3.3@80aab5d8",
-        "@opam/ocamlformat@opam:0.9@aa57816e",
-        "@opam/extlib@opam:1.7.6@e17f71b8", "@opam/dune@opam:1.9.0@a7408d38"
+        "@opam/dune@opam:1.9.0@a7408d38"
       ],
       "devDependencies": [
-        "ocaml@4.7.1004@d41d8cd9", "@opam/merlin@opam:3.2.2@829ee6dd",
+        "ocaml@4.7.1004@d41d8cd9", "@opam/ocamlformat@opam:0.9@aa57816e",
+        "@opam/merlin@opam:3.2.2@829ee6dd",
         "@commitlint/config-conventional@7.5.0@d41d8cd9",
         "@commitlint/cli@7.5.2@d41d8cd9"
       ]
@@ -2543,32 +2543,6 @@
         "ocaml@4.7.1004@d41d8cd9", "@opam/result@opam:1.3@bee8bf2e",
         "@opam/astring@opam:0.8.3@4e5e17d5"
       ]
-    },
-    "@opam/extlib@opam:1.7.6@e17f71b8": {
-      "id": "@opam/extlib@opam:1.7.6@e17f71b8",
-      "name": "@opam/extlib",
-      "version": "opam:1.7.6",
-      "source": {
-        "type": "install",
-        "source": [
-          "archive:https://opam.ocaml.org/cache/md5/b9/b976093ef23b7d60fc1c8f0380c4f76a#md5:b976093ef23b7d60fc1c8f0380c4f76a",
-          "archive:https://github.com/ygrek/ocaml-extlib/releases/download/1.7.6/extlib-1.7.6.tar.gz#md5:b976093ef23b7d60fc1c8f0380c4f76a",
-          "archive:https://ygrek.org.ua/p/release/ocaml-extlib/extlib-1.7.6.tar.gz#md5:b976093ef23b7d60fc1c8f0380c4f76a"
-        ],
-        "opam": {
-          "name": "extlib",
-          "version": "1.7.6",
-          "path": "esy.lock/opam/extlib.1.7.6"
-        }
-      },
-      "overrides": [],
-      "dependencies": [
-        "ocaml@4.7.1004@d41d8cd9", "@opam/ocamlfind@opam:1.8.0@f744a0c5",
-        "@opam/cppo@opam:1.6.5@bec3dbd9",
-        "@opam/base-bytes@opam:base@19d0c2ff",
-        "@esy-ocaml/substs@0.0.1@d41d8cd9"
-      ],
-      "devDependencies": [ "ocaml@4.7.1004@d41d8cd9" ]
     },
     "@opam/easy-format@opam:1.3.1@9abfd4ed": {
       "id": "@opam/easy-format@opam:1.3.1@9abfd4ed",

@@ -2,8 +2,12 @@ let read_yojson () =
   let input = Channels.get_inc () in
   let clength = input_line input in
   let cl = "Content-Length: " in
-  let cll = String.length cl in
-  if String.sub clength 0 cll = cl then (
+  let cll = String.length cl
+  in
+
+  if String.sub 
+  clength 0 cll = 
+  cl then (
     let offset = match Sys.os_type with "Win32" -> 0 | _ -> -1 in
     let numstr =
       String.sub clength cll (String.length clength - cll + offset)
