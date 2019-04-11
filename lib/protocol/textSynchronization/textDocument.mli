@@ -2,7 +2,8 @@
 
 (** The module identifier contains the TextDocument.Identifier type *)
 module Identifier : sig
-  type t = { uri : DocumentUri.t  (** The text document's URI *) } [@@deriving yojson]
+  type t = { uri : DocumentUri.t  (** The text document's URI *) }
+  [@@deriving yojson]
 end
 
 module VersionedIdentifier : sig

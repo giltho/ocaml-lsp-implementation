@@ -18,7 +18,12 @@ module ContentChangeEvent = struct
 end
 
 module Item = struct
-  type t = { uri : DocumentUri.t; languageId : string; version : int; text : string }
+  type t = {
+    uri : DocumentUri.t;
+    languageId : string;
+    version : int;
+    text : string
+  }
   [@@deriving yojson]
 
   let set_version item version = { item with version }

@@ -29,4 +29,4 @@ type t =
 
 val to_yojson : t -> Json.json
 
-val of_yojson : Json.json -> (t, ErrorCodes.t) Result.t
+val of_yojson : Json.json -> (t, ErrorCodes.t) result

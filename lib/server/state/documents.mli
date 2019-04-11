@@ -1,7 +1,7 @@
 module Manager : sig
   val find_opt_uri : DocumentUri.t -> Item.t option
-  (** Returns an Item given a DocumentUri, if there is one corresponding to said uri in
-      the manager *)
+  (** Returns an Item given a DocumentUri, if there is one corresponding to
+      said uri in the manager *)
 
   val find_opt_id : Identifier.t -> Item.t option
   (** Returns an Item given an Identifier, if there is one corresponding to

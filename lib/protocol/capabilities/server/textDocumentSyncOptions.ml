@@ -24,11 +24,3 @@ type t = {
   save : saveOptions
 }
 [@@deriving yojson]
-
-let implemented =
-  { openClose = true;
-    change = TDSKFull;
-    willSave = false;
-    willSaveWaitUntil = false;
-    save = implementedSaveOptions
-  }

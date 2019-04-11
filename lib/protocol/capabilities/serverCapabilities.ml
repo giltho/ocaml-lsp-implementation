@@ -1,3 +1,4 @@
+(** Defines server capabilities *)
 type t = {
   textDocumentSync : TextDocumentSyncOptions.t;
   hoverProvider : bool;
@@ -5,10 +6,3 @@ type t = {
   completionProvider : CompletionOptions.t
 }
 [@@deriving yojson]
-
-let implemented =
-  { textDocumentSync = TextDocumentSyncOptions.implemented;
-    hoverProvider = false;
-    definitionProvider = false;
-    completionProvider = CompletionOptions.implemented
-  }

@@ -11,6 +11,6 @@ type t = {
   rMethod : rMethod  (** This field contains the method with the params *)
 }
 
-val of_yojson : Json.json -> (t, ErrorCodes.t) Result.t
+val of_yojson : Json.json -> (t, ErrorCodes.t) result
 
 val to_yojson : t -> Json.json

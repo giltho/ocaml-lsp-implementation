@@ -49,7 +49,8 @@ let of_yojson json =
           (ErrorCodes.InvalidParams
              "Cannot invoke textDocument/didOpen without params")
     | Some params ->
-        DidOpenTextDocumentParams.of_yojson params |+> fun x -> Ok (NDidOpen x) )
+        DidOpenTextDocumentParams.of_yojson params |+> fun x -> Ok (NDidOpen x)
+    )
   | Some (`String "textDocument/didClose") -> (
     match json % "params" with
     | None ->
@@ -57,7 +58,8 @@ let of_yojson json =
           (ErrorCodes.InvalidParams
              "Cannot invoke textDocument/didClose without params")
     | Some params ->
-        DidCloseTextDocumentParams.of_yojson params |+> fun x -> Ok (NDidClose x) )
+        DidCloseTextDocumentParams.of_yojson params |+> fun x ->
+        Ok (NDidClose x) )
   | Some (`String "textDocument/didChange") -> (
     match json % "params" with
     | None ->
@@ -65,7 +67,8 @@ let of_yojson json =
           (ErrorCodes.InvalidParams
              "Cannot invoke textDocument/didClose without params")
     | Some params ->
-        DidChangeTextDocumentParams.of_yojson params |+> fun x -> Ok (NDidChange x) )
+        DidChangeTextDocumentParams.of_yojson params |+> fun x ->
+        Ok (NDidChange x) )
   | Some (`String "textDocument/publishDiagnostics") -> (
     match json % "params" with
     | None ->

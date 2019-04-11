@@ -16,7 +16,8 @@ type t = {
           process. *)
 }
 
-val initialize : int option -> DocumentUri.t -> ClientCapabilities.t -> Trace.t -> unit
+val initialize :
+  int option -> DocumentUri.t -> ClientCapabilities.t -> Trace.t -> unit
 (** Function that should be called to initialize the server *)
 
 val initialized : unit -> bool
