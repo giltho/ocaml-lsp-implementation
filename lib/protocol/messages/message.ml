@@ -1,12 +1,16 @@
+(** This module describes received messages and how to parse them *)
+
 open Json
 open Result
 
+(** Type of received messages, it can be either a request, a notification or a
+    response to a prevously sent request *)
 type t =
   | MRequest of RequestMessage.t
   | MNotification of NotificationMessage.t
   | MResponse of ResponseMessage.t
 
-let of_yojson json =
+let of_yojson (json: Yojson.Safe.json) : (t, ErrorCodes.t) result =
   match json % "jsonrpc" with
   | Some (`String "2.0") -> (
     match (json % "id", json % "method") with
@@ -26,7 +30,7 @@ let of_yojson json =
   | _ ->
       Error (ErrorCodes.InvalidRequest "jsonrpc field is not set on request")
 
-let to_yojson message =
+let to_yojson (message: t) : Yojson.Safe.json =
   let without_jsonrpc =
     match message with
     | MRequest rm -> RequestMessage.to_yojson rm

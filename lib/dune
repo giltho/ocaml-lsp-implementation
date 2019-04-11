@@ -1,6 +1,0 @@
-(library
-    (name lsplib)
-    (public_name lsplib)
-    (synopsis "Library that contains everything needed to build a language server")
-    (libraries yojson ppx_deriving_yojson.runtime lsplib.protocol)
-    (preprocess (pps ppx_deriving_yojson)))

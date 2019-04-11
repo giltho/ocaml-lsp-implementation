@@ -1,6 +1,8 @@
+(** Defines a notification message *)
+
 open Json
 
-(* Since there's no id the type is directly method + params *)
+(** Defines what a notification message is *)
 type t =
   | NExit
   | NInitialized
@@ -9,7 +11,7 @@ type t =
   | NDidChange of DidChangeTextDocumentParams.t
   | NPublishDiagnostics of PublishDiagnosticsParams.t
 
-let to_yojson = function
+let to_yojson : t -> Yojson.Safe.json = function
   | NExit -> o [ ("method", s "exit") ]
   | NInitialized -> o [ ("method", s "initialized") ]
   | NDidOpen params ->
@@ -38,7 +40,7 @@ let ( |+> ) result f =
   | Ok x -> f x
   | Error s -> Error (ErrorCodes.InvalidParams s)
 
-let of_yojson json =
+let of_yojson (json: Yojson.Safe.json) : (t, ErrorCodes.t) result =
   match json % "method" with
   | Some (`String "initialized") -> Ok NInitialized
   | Some (`String "exit") -> Ok NExit

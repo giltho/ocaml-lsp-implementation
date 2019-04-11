@@ -1,17 +1,24 @@
 open Json
 
-type success = SInitialize of InitializeResult.t
+module Data = struct
+  module Success = struct
+    type t =
+      | SInitialize of InitializeResult.t
+  end
 
-type data = ResSuccess of success | ResError of ErrorCodes.t
+  type t =
+    | ResSuccess of Success.t
+    | ResError of ErrorCodes.t
+end
 
-type t = { resId : json; resData : data }
+type t = { id : json; data : Data.t }
 
 let of_yojson = function
   | _ -> Error (ErrorCodes.MethodNotFound "Not implemented yet")
 
-let to_yojson { resId; resData } =
-  let idj = ("id", resId) in
-  match resData with
+let to_yojson { id; data } =
+  let idj = ("id", id) in
+  match data with
   | ResSuccess succ ->
       let result =
         match succ with SInitialize ir -> InitializeResult.to_yojson ir
