@@ -1,17 +1,17 @@
 (** This file contains shortcuts to build JSON representations *)
-type t = Yojson.Safe.json
+type json = Yojson.Safe.json
 
-let s = fun s -> `String s
+let s s = `String s
 
-let o = fun l -> `Assoc l
+let o l = `Assoc l
 
-let i = fun n -> `Int n
+let i n = `Int n
 
-let b = fun tf -> `Bool tf
+let b tf = `Bool tf
 
-let f = fun n -> `Float n
+let f n = `Float n
 
-let l = fun jl -> `List jl
+let l jl = `List jl
 
 let ( % ) json field =
   let rec find_field l =

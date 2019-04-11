@@ -1,6 +1,6 @@
 module Manager : sig
-  val find_opt_uri : CUri.t -> Item.t option
-  (** Returns an Item given a Uri, if there is one corresponding to said uri in
+  val find_opt_uri : DocumentUri.t -> Item.t option
+  (** Returns an Item given a DocumentUri, if there is one corresponding to said uri in
       the manager *)
 
   val find_opt_id : Identifier.t -> Item.t option
@@ -14,7 +14,7 @@ module Manager : sig
   val open_item : Item.t -> unit
   (** adds an Item to the manager *)
 
-  val close : CUri.t -> unit
+  val close : DocumentUri.t -> unit
   (** removes the Item corresponding to a given uri from manager *)
 
   val close_id : Identifier.t -> unit

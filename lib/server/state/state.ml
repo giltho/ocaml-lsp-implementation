@@ -1,5 +1,5 @@
 type t = {
-  rootUri : CUri.t;
+  rootUri : DocumentUri.t;
   clientCapabilities : ClientCapabilities.t;
   trace : Trace.t;
   parentProcessId : int option
@@ -10,7 +10,7 @@ type t = {
 (** Initial state *)
 let current =
   ref
-    { rootUri = Uri.empty;
+    { rootUri = DocumentUri.empty;
       clientCapabilities = ClientCapabilities.default;
       trace = Trace.TOff;
       parentProcessId = None

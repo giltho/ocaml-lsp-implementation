@@ -5,7 +5,7 @@ let kind_of_yojson = function
   | `Int 1 | `Float 1. -> Ok TDSKFull
   | `Int 2 | `Float 2. -> Ok TDSKIncremental
   | j ->
-      Error (Json.to_string j ^ " is not a correct TextDocumentSyncKind")
+      Error (Json.json_to_string j ^ " is not a correct TextDocumentSyncKind")
 
 let kind_to_yojson = function
   | TDSKNone -> `Int 0

@@ -12,7 +12,7 @@ type synchronisationCapabilities = {
 [@@deriving yojson { strict = false }]
 
 let defaultSynchronisation =
-  Result.get (synchronisationCapabilities_of_yojson (`Assoc []))
+  Result.get (synchronisationCapabilities_of_yojson (Json.o []))
 
 (* completionItem *)
 type completionItemCapabilities = {
@@ -25,7 +25,7 @@ type completionItemCapabilities = {
 [@@deriving yojson { strict = false }]
 
 let defaultCompletionItemCapabilities =
-  Result.get (completionItemCapabilities_of_yojson (`Assoc []))
+  Result.get (completionItemCapabilities_of_yojson (Json.o []))
 
 (* completionItemKind *)
 module CompletionItemKind = struct
@@ -134,7 +134,7 @@ type completionCapabilities = {
 [@@deriving yojson { strict = false }]
 
 let defaultCompletionCapabilities =
-  Result.get (completionCapabilities_of_yojson (`Assoc []))
+  Result.get (completionCapabilities_of_yojson (Json.o []))
 
 (* hover *)
 type hoverCapabilities = {
@@ -143,8 +143,7 @@ type hoverCapabilities = {
 }
 [@@deriving yojson { strict = false }]
 
-let defaultHoverCapabilities =
-  Result.get (hoverCapabilities_of_yojson (`Assoc []))
+let defaultHoverCapabilities = Result.get (hoverCapabilities_of_yojson (Json.o []))
 
 (* signature help *)
 type signatureInformationCapabilities = {
@@ -163,7 +162,7 @@ type signatureHelpCapabilities = {
 [@@deriving yojson]
 
 let defaultSignatureHelpCapabilities =
-  Result.get (signatureHelpCapabilities_of_yojson (`Assoc []))
+  Result.get (signatureHelpCapabilities_of_yojson (Json.o []))
 
 (* references *)
 (* type referencesCapabilities = onlyDynamicRegistration let
@@ -182,4 +181,4 @@ type t = {
 }
 [@@deriving yojson { strict = false }]
 
-let default = Result.get (of_yojson (`Assoc []))
+let default = Result.get (of_yojson (Json.o []))

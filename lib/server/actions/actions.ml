@@ -1,5 +1,5 @@
 module type S = sig
-  val diagnose : CUri.t -> Diagnostic.t list -> unit
+  val diagnose : DocumentUri.t -> Diagnostic.t list -> unit
 end
 
 let diagnose uri diagnostics =

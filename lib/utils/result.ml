@@ -1,4 +1,4 @@
-type ('a,'b) t = ('a, 'a) result
+type ('a, 'b) t = ('a, 'b) result
 
 let get res = match res with Ok a -> a | Error b -> failwith b
 

@@ -5,4 +5,4 @@ type t = {
 }
 [@@deriving yojson { strict = false }]
 
-let default = Result.get (of_yojson (`Assoc []))
+let default = Result.get (of_yojson (Json.o []))

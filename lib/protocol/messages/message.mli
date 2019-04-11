@@ -7,7 +7,7 @@ type t =
   | MNotification of NotificationMessage.t
   | MResponse of ResponseMessage.t
 
-val of_yojson : YojsonShort.json -> t Result.t
+val of_yojson : Json.json -> (t, ErrorCodes.t) Result.t
 (** Parses a received message in yojson form to an actual Message *)
 
-val to_yojson : t -> YojsonShort.json
+val to_yojson : t -> Json.json

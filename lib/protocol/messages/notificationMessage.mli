@@ -22,11 +22,11 @@ type t =
       (** @see
           <https://microsoft.github.io/language-server-protocol/specification#textDocument_didChange>
            *)
-  | NPublishDiagnostics of PublishDiagnostics.Params.t
+  | NPublishDiagnostics of PublishDiagnosticsParams.t
       (** @see
           <https://microsoft.github.io/language-server-protocol/specification#textDocument_publishDiagnostics>
            *)
 
-val to_yojson : t -> YojsonShort.json
+val to_yojson : t -> Json.json
 
-val of_yojson : YojsonShort.json -> t Result.t
+val of_yojson : Json.json -> (t, ErrorCodes.t) Result.t

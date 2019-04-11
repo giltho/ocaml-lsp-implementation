@@ -3,7 +3,7 @@
 
 (** describes the current state of the server *)
 type t = {
-  rootUri : Uri.t;
+  rootUri : DocumentUri.t;
       (** The rootUri of the workspace. Is empty if no folder is open *)
   clientCapabilities : ClientCapabilities.t;
       (** The capabilities provided by the client (editor or tool) *)
@@ -16,7 +16,7 @@ type t = {
           process. *)
 }
 
-val initialize : int option -> Uri.t -> ClientCapabilities.t -> Trace.t -> unit
+val initialize : int option -> DocumentUri.t -> ClientCapabilities.t -> Trace.t -> unit
 (** Function that should be called to initialize the server *)
 
 val initialized : unit -> bool

@@ -10,6 +10,7 @@
     "build:doc": "esy -C sh scripts/make-doc.sh"
   },
   "dependencies": {
+    "@opam/cmitomli": "1.0.0",
     "@opam/dune": "^1.9",
     "@opam/ppx_deriving_yojson": "3.3",
     "@opam/uri": "2.2.0",
@@ -21,6 +22,7 @@
     "@opam/ocamlformat": "0.9",
     "@commitlint/config-conventional": "^7.5.0",
     "@opam/merlin": "*",
+    "@opam/odoc": "1.4.0",
     "ocaml": "~4.7.1"
   }
 }

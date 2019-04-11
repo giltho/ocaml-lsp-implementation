@@ -1,4 +1,4 @@
-open YojsonShort
+open Json
 
 type t =
   | ParseError of string

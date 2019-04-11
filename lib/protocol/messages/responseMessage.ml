@@ -1,6 +1,6 @@
-open YojsonShort
+open Json
 
-type success = SInitialize of Initialize.Results.t
+type success = SInitialize of InitializeResult.t
 
 type data = ResSuccess of success | ResError of ErrorCodes.t
 
@@ -14,7 +14,7 @@ let to_yojson { resId; resData } =
   match resData with
   | ResSuccess succ ->
       let result =
-        match succ with SInitialize ir -> Initialize.Results.to_yojson ir
+        match succ with SInitialize ir -> InitializeResult.to_yojson ir
       in
       o [ idj; ("result", result) ]
   | ResError err ->

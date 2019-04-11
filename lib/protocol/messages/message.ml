@@ -1,4 +1,4 @@
-open YojsonShort
+open Json
 open Result
 
 type t =

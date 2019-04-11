@@ -2,13 +2,13 @@
 
 (** The module identifier contains the TextDocument.Identifier type *)
 module Identifier : sig
-  type t = { uri : CUri.t  (** The text document's URI *) } [@@deriving yojson]
+  type t = { uri : DocumentUri.t  (** The text document's URI *) } [@@deriving yojson]
 end
 
 module VersionedIdentifier : sig
   (** An identifier to denote a specific version of a text document. *)
   type t = {
-    uri : CUri.t;  (** Uri of the document *)
+    uri : DocumentUri.t;  (** DocumentUri of the document *)
     version : int
         (* option *)
         (** The version number of this document. If a versioned text document
@@ -26,7 +26,7 @@ end
 module Item : sig
   (** An item to transfer a text document from the client to the server. *)
   type t = {
-    uri : CUri.t;  (** The text document's URI. *)
+    uri : DocumentUri.t;  (** The text document's URI. *)
     languageId : string;  (** The text document's language identifier. *)
     version : int;
         (** The version number of this document (it will increase after each

@@ -1,23 +1,23 @@
 (** This file contains shortcuts to build JSON representations *)
-type t = Yojson.Safe.json
+type json = Yojson.Safe.json
 
-val s : string -> t
+val s : string -> json
 
-val o : (string * t) list -> t
+val o : (string * json) list -> json
 
-val i : int -> t
+val i : int -> json
 
-val b : bool -> t
+val b : bool -> json
 
-val f : float -> t
+val f : float -> json
 
-val l : t list -> t
+val l : json list -> json
 
-val ( % ) : t -> string -> t option
+val ( % ) : json -> string -> json option
 
-val parse : ?buf:Bi_outbuf.t -> ?fname:string -> ?lnum:int -> string -> t
+val parse : ?buf:Bi_outbuf.t -> ?fname:string -> ?lnum:int -> string -> json
 
 val json_to_string :
-  ?buf:Bi_outbuf.t -> ?len:int -> ?std:bool -> t -> string
+  ?buf:Bi_outbuf.t -> ?len:int -> ?std:bool -> json -> string
 
-val is_s : t -> bool
+val is_s : json -> bool
