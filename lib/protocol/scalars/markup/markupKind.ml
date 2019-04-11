@@ -1,6 +1,6 @@
 type t = Markdown | Plaintext
 
-let of_yojson (json: Json.json) : (t, string) result =
+let of_yojson (json : Json.json) : (t, string) result =
   match json with
   | `String "markdown" -> Ok Markdown
   | `String "plaintext" -> Ok Plaintext
