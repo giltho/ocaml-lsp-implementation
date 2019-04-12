@@ -7,10 +7,11 @@
   "esy": { "build": "dune build -p lsplib", "buildsInSource": "_build" },
   "scripts": {
     "init": "esy -C sh scripts/init.sh",
-    "build:doc": "esy -C sh scripts/make-doc.sh"
+    "build:doc": "esy -C sh scripts/make-doc.sh",
+    "build:ts": "esy -C dune build bin/testServer.exe"
   },
   "dependencies": {
-    "@opam/cmitomli": "1.0.0",
+    "@opam/cmdliner": "1.0.3",
     "@opam/dune": "^1.9",
     "@opam/ppx_deriving_yojson": "3.3",
     "@opam/uri": "2.2.0",
@@ -23,6 +24,8 @@
     "@commitlint/config-conventional": "^7.5.0",
     "@opam/merlin": "*",
     "@opam/odoc": "1.4.0",
-    "ocaml": "~4.7.1"
+    "ocaml": "~4.7.1",
+    "@opam/utop": "2.3.0",
+    "@opam/cmitomli": "1.0.0"
   }
 }

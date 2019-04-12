@@ -1,26 +1,10 @@
-open Result
+open Cmdliner
 
 module type P = sig
-  (* Parameters about the language *)
-  val language_name : string
-
-  val language_id : string
-
-  (* Parameters about where to report stuff *)
-  val inc : in_channel
-
-  val outc : out_channel
-
-  val logc : out_channel
-
-  module Hooks : Hooks.S
 end
 
-module type S = sig
-  val start : unit -> int
-end
-
-module Make (P : P) : S = struct
+(* 
+module Make (P : P) = struct
   module InMessageHandler = InMessageHandler.Make (P.Hooks)
 
   let log_json j = Channels.log (Yojson.Safe.pretty_to_string j ^ "\n")
@@ -57,7 +41,23 @@ module Make (P : P) : S = struct
     loop ()
 
   let start () =
-    let () = P.(Channels.register ~inc ~outc ~logc) in
-    let () = register_actions () in
+    Term
+end *)
+
+
+module Make (P : P) = struct
+
+  let revolt = Term.const (fun () -> Printf.printf "revolt !")
+
+  let loop () =
+    ()
+      
+
+
+  let run () =
     loop ()
+
+
+  let start () =
+    Term.(exit @@ eval (const run $ const (), info "revolt !"))
 end

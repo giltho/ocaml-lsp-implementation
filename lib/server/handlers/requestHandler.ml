@@ -1,5 +1,4 @@
-(** Refactoring of response messages ? Something isn't completely smooth
-    here... *)
+
 let handle RequestMessage.{ rId; rMethod } =
   match rMethod with
   | RInitialize ip -> (
