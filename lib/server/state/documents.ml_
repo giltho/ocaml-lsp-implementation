@@ -1,5 +1,6 @@
-module Manager = struct
-  type t = (DocumentUri.t, Item.t) Hashtbl.t
+
+module Manager () = struct
+  type t = (DocumentUri.t, DocumentItem.t) Hashtbl.t
 
   let current : t = Hashtbl.create 10
 

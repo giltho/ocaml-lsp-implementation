@@ -1,6 +1,6 @@
 (library
   (name server)
   (public_name lsplib.server)
-  (libraries cmdliner lwt.unix rpc utils protocol)
+  (libraries cmdliner lwt.unix rpc utils protocol handlers)
   (flags -open Utils)
   (preprocess (pps lwt_ppx ppx_let)))
