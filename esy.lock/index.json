@@ -1,5 +1,5 @@
 {
-  "checksum": "58f25dd0e5a9ac23b2cd1e163e827a42",
+  "checksum": "331ea7b8525822530cec7aa89195b87e",
   "root": "lsplib@link-dev:./package.json",
   "node": {
     "yargs-parser@10.1.0@d41d8cd9": {
@@ -896,7 +896,7 @@
         "ocaml@4.7.1004@d41d8cd9", "@opam/yojson@opam:1.5.0@890db858",
         "@opam/uri@opam:2.2.0@dfca6d0f",
         "@opam/ppx_deriving_yojson@opam:3.3@80aab5d8",
-        "@opam/dune@opam:1.9.1@61bdaadf",
+        "@opam/lwt@opam:4.2.1@c1888ec9", "@opam/dune@opam:1.9.1@61bdaadf",
         "@opam/cmdliner@opam:1.0.3@96d31520"
       ],
       "devDependencies": [
