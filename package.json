@@ -25,7 +25,6 @@
     "@opam/merlin": "*",
     "@opam/odoc": "1.4.0",
     "ocaml": "~4.7.1",
-    "@opam/utop": "2.3.0",
-    "@opam/cmitomli": "1.0.0"
+    "@opam/utop": "2.3.0"
   }
 }
