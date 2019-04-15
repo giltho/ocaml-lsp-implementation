@@ -3,6 +3,6 @@ type t = {
   change : TextDocumentSyncKind.t;
   willSave : bool;
   willSaveWaitUntil : bool;
-  save : SaveOptions.t
+  save : SaveOptions.t option;
 }
 [@@deriving yojson]
