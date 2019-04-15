@@ -1,5 +1,5 @@
 {
-  "checksum": "331ea7b8525822530cec7aa89195b87e",
+  "checksum": "d75fedcb78b60acb1043f22893c95f53",
   "root": "lsplib@link-dev:./package.json",
   "node": {
     "yargs-parser@10.1.0@d41d8cd9": {
@@ -896,7 +896,8 @@
         "ocaml@4.7.1004@d41d8cd9", "@opam/yojson@opam:1.5.0@890db858",
         "@opam/uri@opam:2.2.0@dfca6d0f",
         "@opam/ppx_deriving_yojson@opam:3.3@80aab5d8",
-        "@opam/lwt@opam:4.2.1@c1888ec9", "@opam/dune@opam:1.9.1@61bdaadf",
+        "@opam/lwt_ppx@opam:1.2.2@946c5ba2", "@opam/lwt@opam:4.2.1@c1888ec9",
+        "@opam/dune@opam:1.9.1@61bdaadf",
         "@opam/cmdliner@opam:1.0.3@96d31520"
       ],
       "devDependencies": [
@@ -2274,6 +2275,34 @@
         "@opam/ocaml-migrate-parsetree@opam:1.2.0@23e55f71"
       ]
     },
+    "@opam/ppx_tools_versioned@opam:5.2.1@1eeea765": {
+      "id": "@opam/ppx_tools_versioned@opam:5.2.1@1eeea765",
+      "name": "@opam/ppx_tools_versioned",
+      "version": "opam:5.2.1",
+      "source": {
+        "type": "install",
+        "source": [
+          "archive:https://opam.ocaml.org/cache/md5/1a/1ae6ae43ec161fbbf12c2b4d3a7e26f5#md5:1ae6ae43ec161fbbf12c2b4d3a7e26f5",
+          "archive:https://github.com/ocaml-ppx/ppx_tools_versioned/archive/5.2.1.tar.gz#md5:1ae6ae43ec161fbbf12c2b4d3a7e26f5"
+        ],
+        "opam": {
+          "name": "ppx_tools_versioned",
+          "version": "5.2.1",
+          "path": "esy.lock/opam/ppx_tools_versioned.5.2.1"
+        }
+      },
+      "overrides": [],
+      "dependencies": [
+        "ocaml@4.7.1004@d41d8cd9",
+        "@opam/ocaml-migrate-parsetree@opam:1.2.0@23e55f71",
+        "@opam/jbuilder@opam:transition@58bdfe0a",
+        "@esy-ocaml/substs@0.0.1@d41d8cd9"
+      ],
+      "devDependencies": [
+        "ocaml@4.7.1004@d41d8cd9",
+        "@opam/ocaml-migrate-parsetree@opam:1.2.0@23e55f71"
+      ]
+    },
     "@opam/ppx_tools@opam:5.1+4.06.0@a9357225": {
       "id": "@opam/ppx_tools@opam:5.1+4.06.0@a9357225",
       "name": "@opam/ppx_tools",
@@ -2691,6 +2720,37 @@
       ],
       "devDependencies": [
         "ocaml@4.7.1004@d41d8cd9", "@opam/react@opam:1.2.1@0e11855f",
+        "@opam/lwt@opam:4.2.1@c1888ec9"
+      ]
+    },
+    "@opam/lwt_ppx@opam:1.2.2@946c5ba2": {
+      "id": "@opam/lwt_ppx@opam:1.2.2@946c5ba2",
+      "name": "@opam/lwt_ppx",
+      "version": "opam:1.2.2",
+      "source": {
+        "type": "install",
+        "source": [
+          "archive:https://opam.ocaml.org/cache/md5/2c/2ce7827948adc611319f9449e4519070#md5:2ce7827948adc611319f9449e4519070",
+          "archive:https://github.com/ocsigen/lwt/archive/4.2.0.tar.gz#md5:2ce7827948adc611319f9449e4519070"
+        ],
+        "opam": {
+          "name": "lwt_ppx",
+          "version": "1.2.2",
+          "path": "esy.lock/opam/lwt_ppx.1.2.2"
+        }
+      },
+      "overrides": [],
+      "dependencies": [
+        "ocaml@4.7.1004@d41d8cd9",
+        "@opam/ppx_tools_versioned@opam:5.2.1@1eeea765",
+        "@opam/ocaml-migrate-parsetree@opam:1.2.0@23e55f71",
+        "@opam/lwt@opam:4.2.1@c1888ec9", "@opam/dune@opam:1.9.1@61bdaadf",
+        "@esy-ocaml/substs@0.0.1@d41d8cd9"
+      ],
+      "devDependencies": [
+        "ocaml@4.7.1004@d41d8cd9",
+        "@opam/ppx_tools_versioned@opam:5.2.1@1eeea765",
+        "@opam/ocaml-migrate-parsetree@opam:1.2.0@23e55f71",
         "@opam/lwt@opam:4.2.1@c1888ec9"
       ]
     },
