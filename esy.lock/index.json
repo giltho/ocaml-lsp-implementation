@@ -1,5 +1,5 @@
 {
-  "checksum": "d75fedcb78b60acb1043f22893c95f53",
+  "checksum": "dbb060db04cfa1b7f8059aa537f51972",
   "root": "lsplib@link-dev:./package.json",
   "node": {
     "yargs-parser@10.1.0@d41d8cd9": {
@@ -895,6 +895,7 @@
       "dependencies": [
         "ocaml@4.7.1004@d41d8cd9", "@opam/yojson@opam:1.5.0@890db858",
         "@opam/uri@opam:2.2.0@dfca6d0f",
+        "@opam/ppx_let@opam:v0.12.0@8bca1692",
         "@opam/ppx_deriving_yojson@opam:3.3@80aab5d8",
         "@opam/lwt_ppx@opam:1.2.2@946c5ba2", "@opam/lwt@opam:4.2.1@c1888ec9",
         "@opam/dune@opam:1.9.1@61bdaadf",
@@ -2354,6 +2355,33 @@
       "devDependencies": [
         "ocaml@4.7.1004@d41d8cd9", "@opam/sexplib0@opam:v0.12.0@e823b4e9",
         "@opam/ppxlib@opam:0.5.0@674193ca",
+        "@opam/base@opam:v0.12.0@bd6e6655"
+      ]
+    },
+    "@opam/ppx_let@opam:v0.12.0@8bca1692": {
+      "id": "@opam/ppx_let@opam:v0.12.0@8bca1692",
+      "name": "@opam/ppx_let",
+      "version": "opam:v0.12.0",
+      "source": {
+        "type": "install",
+        "source": [
+          "archive:https://opam.ocaml.org/cache/md5/8e/8ebaa03cb252e29c3152cf32e5769e83#md5:8ebaa03cb252e29c3152cf32e5769e83",
+          "archive:https://ocaml.janestreet.com/ocaml-core/v0.12/files/ppx_let-v0.12.0.tar.gz#md5:8ebaa03cb252e29c3152cf32e5769e83"
+        ],
+        "opam": {
+          "name": "ppx_let",
+          "version": "v0.12.0",
+          "path": "esy.lock/opam/ppx_let.v0.12.0"
+        }
+      },
+      "overrides": [],
+      "dependencies": [
+        "ocaml@4.7.1004@d41d8cd9", "@opam/ppxlib@opam:0.5.0@674193ca",
+        "@opam/dune@opam:1.9.1@61bdaadf", "@opam/base@opam:v0.12.0@bd6e6655",
+        "@esy-ocaml/substs@0.0.1@d41d8cd9"
+      ],
+      "devDependencies": [
+        "ocaml@4.7.1004@d41d8cd9", "@opam/ppxlib@opam:0.5.0@674193ca",
         "@opam/base@opam:v0.12.0@bd6e6655"
       ]
     },
