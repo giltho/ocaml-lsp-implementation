@@ -4,6 +4,11 @@ let map a ~f =
   | Ok o -> Ok (f o)
   | Error _ as e -> e
 
+let bind a ~f =
+  match a with
+  | Ok o -> f o
+  | Error _ as e -> e
+
 let both a b =
   match a with
   | Ok aa -> (

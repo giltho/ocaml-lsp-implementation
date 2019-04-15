@@ -3,7 +3,7 @@ let read_yojson ?(channel = Lwt_io.stdin) () =
   let cl = "Content-Length: " in
   let cll = String.length cl in
   if String.sub clength 0 cll = cl then (
-    let offset = match Sys.os_type with "Win32" -> 0 | _ -> -1 in
+    let offset = match Sys.os_type with "Win32" -> 0 | _ -> 0 in
     let numstr =
       String.sub clength cll (String.length clength - cll + offset)
     in
@@ -12,14 +12,15 @@ let read_yojson ?(channel = Lwt_io.stdin) () =
     in
     (* num is supposedly the length of the json message *)
     let buffer = Bytes.create num in
-    let%lwt () = Lwt_io.read_into_exactly channel buffer 0 num in
+    let%lwt _ = Lwt_io.read_into channel buffer 0 num in
     let raw = Bytes.to_string buffer in
     let json_or_error =
       try Ok (Json.parse raw) with
       | Failure message ->
           Error
-            (Printf.sprintf "Cannot parse: %s as json. Message : %s" raw
+            (Printf.sprintf "Cannot parse: \n\n%s\n\n as json. Message : %s" raw
                 message)
+      | e -> Error (Printf.sprintf "Cannot parse : \n\n%s\n\n as json. Exception : %s" raw (Printexc.to_string e))
     in
     Lwt.return json_or_error)
   else Lwt.return (Error (Printf.sprintf "Invalid header"))
