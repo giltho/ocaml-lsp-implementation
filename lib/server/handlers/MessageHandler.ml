@@ -1,5 +1,6 @@
 module Make () = struct
   module RequestHandler = RequestHandler.Make ()
+  module NotificationHandler = NotificationHandler.Make ()
 
   let handle in_message =
     let open Message in
@@ -10,7 +11,6 @@ module Make () = struct
         Rpc.write_yojson (Message.to_yojson (Message.MResponse response))
     | MNotification nm ->
         (* If it is a notification, simply start the handler *)
-        failwith "NOTIFICATION NOT HANDLED YET";
-        (* NotificationHandler.handle nm *)
+        NotificationHandler.handle nm
     | _ -> Lwt.return ()
 end

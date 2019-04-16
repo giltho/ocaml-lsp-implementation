@@ -6,7 +6,7 @@ module Make () = struct
   type 'b constructor = 'b -> ResponseMessage.Data.Success.t
 
   let initializeHandler (initParams:InitializeParams.t) : ((InitializeResult.t, ErrorCodes.t) result) Lwt.t =
-    let () = State.Internal.initialize ~initialize_params:initParams () in
+    let () = State.Client.initialize ~initialize_params:initParams () in
     let init_res = InitializeResult.{
       capabilities = State.Capabilities.implemented ()
     } in
