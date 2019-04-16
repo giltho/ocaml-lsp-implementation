@@ -1,5 +1,5 @@
 (library
   (name state)
   (public_name lsplib.server.state)
-  (libraries protocol)
+  (libraries protocol lwt.unix)
   (flags -open Protocol))
