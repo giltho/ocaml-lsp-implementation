@@ -1,0 +1,4 @@
+(library
+  (name hooks)
+  (public_name lsplib.server.hooks)
+  (libraries protocol lwt.unix))

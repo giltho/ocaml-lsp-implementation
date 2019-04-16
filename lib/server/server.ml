@@ -1,9 +1,13 @@
 open Cmdliner
 
-module type P = sig end
+module type P = sig
+
+  module Hooks : Hooks.S
+
+end
 
 module Make (P : P) = struct
-  module MessageHandler = Handlers.MessageHandler.Make ()
+  module MessageHandler = Handlers.MessageHandler.Make (P.Hooks)
 
   let rec loop () =
     let%lwt raw_json_res = Rpc.read_yojson () in

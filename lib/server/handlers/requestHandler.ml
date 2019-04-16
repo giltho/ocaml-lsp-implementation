@@ -1,4 +1,4 @@
-module Make () = struct
+module Make (Hooks : Hooks.S) = struct
   type 'b or_error = ('b, ErrorCodes.t) result
 
   type ('a, 'b) handler = 'a -> 'b or_error Lwt.t

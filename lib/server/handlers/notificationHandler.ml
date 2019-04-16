@@ -8,7 +8,7 @@
    DidChangeHandler.handle params | NPublishDiagnostics _params -> failwith
    "Client should not publish diagnostics") end *)
 
-module Make () = struct
+module Make (Hooks : Hooks.S) = struct
   type 'b or_error = ('b, ErrorCodes.t) result
 
   type 'a handler = 'a -> unit or_error Lwt.t

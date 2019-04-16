@@ -1,7 +1,7 @@
-module Make () = struct
-  module RequestHandler = RequestHandler.Make ()
+module Make (Hooks:Hooks.S) = struct
+  module RequestHandler = RequestHandler.Make (Hooks)
 
-  module NotificationHandler = NotificationHandler.Make ()
+  module NotificationHandler = NotificationHandler.Make (Hooks)
 
   let handle in_message =
     let open Message in
