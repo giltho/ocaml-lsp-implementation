@@ -6,25 +6,25 @@ open Json
 type t =
   | NExit
   | NInitialized
-  | NDidOpen of DidOpenTextDocumentParams.t
-  | NDidClose of DidCloseTextDocumentParams.t
-  | NDidChange of DidChangeTextDocumentParams.t
+  | NDidOpenTextDocument of DidOpenTextDocumentParams.t
+  | NDidCloseTextDocument of DidCloseTextDocumentParams.t
+  | NDidChangeTextDocument of DidChangeTextDocumentParams.t
   | NPublishDiagnostics of PublishDiagnosticsParams.t
 
 let to_yojson : t -> Yojson.Safe.json = function
   | NExit -> o [ ("method", s "exit") ]
   | NInitialized -> o [ ("method", s "initialized") ]
-  | NDidOpen params ->
+  | NDidOpenTextDocument params ->
       o
         [ ("method", s "textDocument/didOpen");
           ("params", DidOpenTextDocumentParams.to_yojson params)
         ]
-  | NDidClose params ->
+  | NDidCloseTextDocument params ->
       o
         [ ("method", s "textDocument/didOpen");
           ("params", DidCloseTextDocumentParams.to_yojson params)
         ]
-  | NDidChange params ->
+  | NDidChangeTextDocument params ->
       o
         [ ("method", s "textDocument/didChange");
           ("params", DidChangeTextDocumentParams.to_yojson params)
@@ -51,7 +51,7 @@ let of_yojson (json: Yojson.Safe.json) : (t, ErrorCodes.t) result =
           (ErrorCodes.InvalidParams
              "Cannot invoke textDocument/didOpen without params")
     | Some params ->
-        DidOpenTextDocumentParams.of_yojson params |+> fun x -> Ok (NDidOpen x)
+        DidOpenTextDocumentParams.of_yojson params |+> fun x -> Ok (NDidOpenTextDocument x)
     )
   | Some (`String "textDocument/didClose") -> (
     match json % "params" with
@@ -61,7 +61,7 @@ let of_yojson (json: Yojson.Safe.json) : (t, ErrorCodes.t) result =
              "Cannot invoke textDocument/didClose without params")
     | Some params ->
         DidCloseTextDocumentParams.of_yojson params |+> fun x ->
-        Ok (NDidClose x) )
+        Ok (NDidCloseTextDocument x) )
   | Some (`String "textDocument/didChange") -> (
     match json % "params" with
     | None ->
@@ -70,7 +70,7 @@ let of_yojson (json: Yojson.Safe.json) : (t, ErrorCodes.t) result =
              "Cannot invoke textDocument/didClose without params")
     | Some params ->
         DidChangeTextDocumentParams.of_yojson params |+> fun x ->
-        Ok (NDidChange x) )
+        Ok (NDidChangeTextDocument x) )
   | Some (`String "textDocument/publishDiagnostics") -> (
     match json % "params" with
     | None ->

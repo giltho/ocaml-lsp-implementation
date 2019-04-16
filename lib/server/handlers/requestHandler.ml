@@ -22,20 +22,13 @@ module Make () = struct
     | Error ec ->  { id; data=ResError ec }
 
 
-  (* This function takes a request message "method", and returns :
-   - the params
-   - the associated handler
-   - The Success Data Constructor for the response *)
-  let destruct : RequestMessage.m -> 'a * ('a, 'b) handler * 'b constructor =
-  let open RequestMessage in
-  let open ResponseMessage.Data.Success in
-  function
-  | RInitialize params -> params, initializeHandler, (fun x -> SInitialize x)
+  let handling id params handler constructor =
+    let%lwt result = handler params in
+    Lwt.return (build_response id result constructor)
 
 
   let handle RequestMessage.{ id; method_ } =
-    let param, handler, constructor = destruct method_ in
-    let%lwt result = handler param in
-    Lwt.return (build_response id result constructor)
-
+    let handling = handling id in
+    match method_ with
+    | RInitialize params -> handling params initializeHandler (fun x -> SInitialize x)
 end

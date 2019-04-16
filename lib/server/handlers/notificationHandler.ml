@@ -25,32 +25,35 @@ module Make () = struct
   let initializedHandler () =
     Lwt.return (Ok ())
 
-  let didOpenHandler _ =
+  let didOpenTextDocumentHandler (_:DidOpenTextDocumentParams.t) =
     Lwt.return (Ok ())
 
-  let didCloseHandler _ =
+  let didCloseTextDocumentHandler _ =
     Lwt.return (Ok ())
 
-  let didChangeHandler _ =
+  let didChangeTextDocumentHandler _ =
     Lwt.return (Ok ())
+
+  let unknownNotificationHandler _ =
+    Lwt.return (Error (ErrorCodes.MethodNotFound "Unkown method"))
 
   let log_error _ = Lwt.return ()
 
-  (* This function takes a request message "method", and returns :
-   - the params
-   - the associated handler
-   - The Success Data Constructor for the response *)
-  let destruct : NotificationMessage.t -> 'a * 'a handler=
-  let open NotificationMessage in
-  function
-  | NInitialized -> (), initializedHandler
-
-
-  let handle notfiMessage =
-    let param, handler = destruct notfiMessage in
-    let%lwt result = handler param in
+  let handling params handler =
+    let%lwt result = handler params in
     match result with
     | Ok () -> Lwt.return ()
     | Error ec -> log_error ec
+
+  let handle notifMessage =
+    let open NotificationMessage in
+    match notifMessage with
+    | NInitialized -> handling () initializedHandler
+    | NDidOpenTextDocument params -> handling params didOpenTextDocumentHandler
+    | NDidChangeTextDocument params -> handling params  didChangeTextDocumentHandler
+    | NDidCloseTextDocument params -> handling params didCloseTextDocumentHandler
+    | _ -> handling () unknownNotificationHandler
+
+
 
 end
