@@ -23,7 +23,7 @@ module Make () = struct
   let didChangeTextDocumentHandler _ = Lwt.return (Ok ())
 
   let unknownNotificationHandler _ =
-    Lwt.return (Error (ErrorCodes.MethodNotFound "Unkown method"))
+    Lwt.return (Error (ErrorCodes.InvalidRequest "This method should be server to client only"))
 
   let log_error _ = Lwt.return ()
 
