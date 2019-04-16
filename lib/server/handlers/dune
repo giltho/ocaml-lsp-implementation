@@ -1,6 +1,6 @@
 (library
   (name handlers)
   (public_name lsplib.server.handlers)
-  (libraries protocol lwt.unix utils rpc state)
+  (libraries protocol lwt.unix utils rpc state actions)
   (preprocess (pps ppx_let lwt_ppx))
   (flags -open Utils -open Protocol))

@@ -15,21 +15,43 @@ module Make () = struct
 
   let initializedHandler () = Lwt.return (Ok ())
 
-  let didOpenTextDocumentHandler (_ : DidOpenTextDocumentParams.t) =
+  let didOpenTextDocumentHandler (params : DidOpenTextDocumentParams.t) =
+    let DidOpenTextDocumentParams.{ textDocument } = params in
+    let () = State.DocumentManager.open_item textDocument in
     Lwt.return (Ok ())
 
-  let didCloseTextDocumentHandler _ = Lwt.return (Ok ())
+  let didCloseTextDocumentHandler params =
+    let DidCloseTextDocumentParams.{ textDocument } = params in
+    let () = State.DocumentManager.close_id textDocument in
+    Lwt.return (Ok ())
 
-  let didChangeTextDocumentHandler _ = Lwt.return (Ok ())
+  let didChangeTextDocumentHandler params =
+    let DidChangeTextDocumentParams.{ textDocument; contentChanges } =
+      params
+    in
+    let newDocument =
+      State.DocumentManager.perform_changes textDocument contentChanges
+    in
+    let _ =
+      match newDocument with
+      | Error _ -> Lwt.return ()
+      | Ok doc ->
+          Actions.Log.log
+            (Printf.sprintf "NEW DOC: %s" doc.TextDocumentItem.text)
+    in
+    Lwt.return (Ok ())
 
   let unknownNotificationHandler _ =
-    Lwt.return (Error (ErrorCodes.InvalidRequest "This method should be server to client only"))
-
-  let log_error _ = Lwt.return ()
+    Lwt.return
+      (Error
+         (ErrorCodes.InvalidRequest
+            "This method should be server to client only"))
 
   let handling params handler =
     let%lwt result = handler params in
-    match result with Ok () -> Lwt.return () | Error ec -> log_error ec
+    match result with
+    | Ok () -> Lwt.return ()
+    | Error ec -> Actions.Log.log_error ec
 
   let handle notifMessage =
     let open NotificationMessage in
