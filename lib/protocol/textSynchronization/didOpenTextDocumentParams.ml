@@ -1,1 +1,1 @@
-type t = { textDocument : TextDocument.Item.t } [@@deriving yojson]
+type t = { textDocument : TextDocumentItem.t } [@@deriving yojson]

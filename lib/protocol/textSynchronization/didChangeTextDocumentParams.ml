@@ -1,5 +1,5 @@
 type t = {
-  textDocument : TextDocument.VersionedIdentifier.t;
-  contentChanges : TextDocument.ContentChangeEvent.t list
+  textDocument : VersionedTextDocumentIdentifier.t;
+  contentChanges : TextDocumentContentChangeEvent.t list
 }
 [@@deriving yojson]
