@@ -14,6 +14,7 @@ type t = {
       (** The capabilities provided by the client (editor or tool) *)
   trace : Trace.t [@default Trace.TOff]
       (** The initial trace setting. If omitted trace is disabled ('off'). *)
-  (* TODO: workspaceFolders : workspaceFolders.t; *)
 }
-[@@deriving yojson { strict = false }]
+[@@(* TODO: workspaceFolders : workspaceFolders.t; *)
+  deriving
+  yojson { strict = false }]

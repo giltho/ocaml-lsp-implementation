@@ -40,7 +40,7 @@ let ( |+> ) result f =
   | Ok x -> f x
   | Error s -> Error (ErrorCodes.InvalidParams s)
 
-let of_yojson (json: Yojson.Safe.json) : (t, ErrorCodes.t) result =
+let of_yojson (json : Yojson.Safe.json) : (t, ErrorCodes.t) result =
   match json % "method" with
   | Some (`String "initialized") -> Ok NInitialized
   | Some (`String "exit") -> Ok NExit
@@ -51,8 +51,8 @@ let of_yojson (json: Yojson.Safe.json) : (t, ErrorCodes.t) result =
           (ErrorCodes.InvalidParams
              "Cannot invoke textDocument/didOpen without params")
     | Some params ->
-        DidOpenTextDocumentParams.of_yojson params |+> fun x -> Ok (NDidOpenTextDocument x)
-    )
+        DidOpenTextDocumentParams.of_yojson params |+> fun x ->
+        Ok (NDidOpenTextDocument x) )
   | Some (`String "textDocument/didClose") -> (
     match json % "params" with
     | None ->

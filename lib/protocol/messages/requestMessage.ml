@@ -11,7 +11,7 @@ let ( |+> ) result f =
 type t = { id : json; method_ : m }
 
 (** Should only be called if it is sure that there is an `id` in the message *)
-let of_yojson (json: Yojson.Safe.json) : (t, ErrorCodes.t) result =
+let of_yojson (json : Yojson.Safe.json) : (t, ErrorCodes.t) result =
   let id = Option.get (json % "id") in
   match json % "method" with
   | Some (`String "initialize") -> (

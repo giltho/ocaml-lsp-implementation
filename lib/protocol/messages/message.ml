@@ -10,7 +10,7 @@ type t =
   | MNotification of NotificationMessage.t
   | MResponse of ResponseMessage.t
 
-let of_yojson (json: Yojson.Safe.json) : (t, ErrorCodes.t) result =
+let of_yojson (json : Yojson.Safe.json) : (t, ErrorCodes.t) result =
   match json % "jsonrpc" with
   | Some (`String "2.0") -> (
     match (json % "id", json % "method") with
@@ -30,7 +30,7 @@ let of_yojson (json: Yojson.Safe.json) : (t, ErrorCodes.t) result =
   | _ ->
       Error (ErrorCodes.InvalidRequest "jsonrpc field is not set on request")
 
-let to_yojson (message: t) : Yojson.Safe.json =
+let to_yojson (message : t) : Yojson.Safe.json =
   let without_jsonrpc =
     match message with
     | MRequest rm -> RequestMessage.to_yojson rm

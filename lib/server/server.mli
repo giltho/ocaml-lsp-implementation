@@ -4,9 +4,7 @@
 (** This module type defines the signature of parameters that should be given
     to the {!Make} functor in order to build a Language Server *)
 
-
-module type P = sig
-end
+module type P = sig end
 
 (** This functor builds a Language Server from a parameter module of signature
     {!P} *)

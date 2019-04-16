@@ -10,15 +10,10 @@ let _initialized = ref false
 
 let initialized () = !_initialized
 
-let initialize
-  ~initialize_params
-  () =
-  let InitializeParams.{
-    processId;
-    rootUri;
-    capabilities;
-    trace;
-  } = initialize_params in
+let initialize ~initialize_params () =
+  let InitializeParams.{ processId; rootUri; capabilities; trace } =
+    initialize_params
+  in
   _parent_process_id := processId;
   _root_uri := rootUri;
   _client_capabilities := capabilities;

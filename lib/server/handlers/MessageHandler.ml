@@ -1,5 +1,6 @@
 module Make () = struct
   module RequestHandler = RequestHandler.Make ()
+
   module NotificationHandler = NotificationHandler.Make ()
 
   let handle in_message =

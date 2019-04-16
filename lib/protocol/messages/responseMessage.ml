@@ -2,13 +2,10 @@ open Json
 
 module Data = struct
   module Success = struct
-    type t =
-      | SInitialize of InitializeResult.t
+    type t = SInitialize of InitializeResult.t
   end
 
-  type t =
-    | ResSuccess of Success.t
-    | ResError of ErrorCodes.t
+  type t = ResSuccess of Success.t | ResError of ErrorCodes.t
 end
 
 type t = { id : json; data : Data.t }
