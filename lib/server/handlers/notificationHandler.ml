@@ -29,17 +29,14 @@ module Make (Hooks : Hooks.S) = struct
     let DidChangeTextDocumentParams.{ textDocument; contentChanges } =
       params
     in
-    let newDocument =
+    let result =
+      let%map newDocument =
       State.DocumentManager.perform_changes textDocument contentChanges
+      in
+      let _ = Hooks.onDidChangeContent ~textDocument:newDocument () in
+      ()
     in
-    let _ =
-      match newDocument with
-      | Error _ -> Lwt.return ()
-      | Ok doc ->
-          Actions.Log.log
-            (Printf.sprintf "NEW DOC: %s" doc.TextDocumentItem.text)
-    in
-    Lwt.return (Ok ())
+    Lwt.return (result)
 
   let unknownNotificationHandler _ =
     Lwt.return

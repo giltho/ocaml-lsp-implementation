@@ -1,12 +1,12 @@
 module type S = sig
 
-  val onDidChangeDocument : textDocument:Protocol.TextDocumentItem.t -> unit -> unit Lwt.t
+  val onDidChangeContent : textDocument:Protocol.TextDocumentItem.t -> unit -> unit Lwt.t
 
 end
 
 module Default : S = struct
 
-  let onDidChangeDocument ~textDocument:_ () =
+  let onDidChangeContent ~textDocument:_ () =
     Lwt.return ()
 
 end

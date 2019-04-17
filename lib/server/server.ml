@@ -17,9 +17,6 @@ module Make (P : P) = struct
       | Error s -> Error (Protocol.ErrorCodes.ParseError s)
     in
     let _ =
-      Actions.Log.log_result ~to_json:Protocol.Message.to_yojson message_res
-    in
-    let _ =
       match message_res with
       | Ok m -> MessageHandler.handle m
       | Error _ -> Lwt.return ()
