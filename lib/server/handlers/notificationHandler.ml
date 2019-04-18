@@ -18,6 +18,7 @@ module Make (Hooks : Hooks.S) = struct
   let didOpenTextDocumentHandler (params : DidOpenTextDocumentParams.t) =
     let DidOpenTextDocumentParams.{ textDocument } = params in
     let () = State.DocumentManager.open_item textDocument in
+    let _ = Hooks.onDidChangeContent ~textDocument () in
     Lwt.return (Ok ())
 
   let didCloseTextDocumentHandler params =
