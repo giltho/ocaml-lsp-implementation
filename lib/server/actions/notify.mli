@@ -1,0 +1,1 @@
+val publishDiagnostics : Protocol.PublishDiagnosticsParams.t -> unit Lwt.t

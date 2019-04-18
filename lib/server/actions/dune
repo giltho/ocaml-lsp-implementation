@@ -1,4 +1,4 @@
 (library
   (name actions)
   (public_name lsplib.server.actions)
-  (libraries lwt.unix protocol state utils))
+  (libraries lwt.unix protocol state utils rpc))
