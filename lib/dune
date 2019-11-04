@@ -1,0 +1,4 @@
+(library
+  (name lsplib)
+  (public_name lsplib)
+  (libraries protocol server hooks))
