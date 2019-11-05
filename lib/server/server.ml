@@ -18,7 +18,7 @@ module Make (P : P) = struct
     in
     let _ =
       match message_res with
-      | Ok m -> MessageHandler.handle m
+      | Ok m -> (try MessageHandler.handle m with _ -> Lwt.return ())
       | Error _ -> Lwt.return ()
     in
     loop ()
